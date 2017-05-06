@@ -1,17 +1,17 @@
 package io.ohjongsung.blog;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
+import java.util.Properties;
+
+import javax.persistence.EntityManagerFactory;
+
+import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import javax.persistence.EntityManagerFactory;
-import java.util.Properties;
 
 /**
  * Created by ohjongsung on 2017-05-06. 퍼시스턴스 컨피그
@@ -19,8 +19,8 @@ import java.util.Properties;
 @Configuration
 @EnableJpaRepositories
 @EnableTransactionManagement
-@Import({ DevelopmentDatabaseConfig.class, StagingDatabaseConfig.class, ProductionDatabaseConfig.class })
 public class PersistenceConfig {
+
     @Bean
     LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
