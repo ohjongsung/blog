@@ -1,0 +1,86 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+
+archivesBaseName = 'io.ohjongsung.blog'
+group 'io.ohjongsung'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+ext{
+    encoding = 'UTF-8'
+    versions = [
+            spring : '4.3.7.RELEASE',
+            junit : '4.12',
+            servletApi : '3.0.1',
+            jspApi : '2.2',
+            jstl : '1.2',
+            slf4j : '1.7.25',
+            logback :'1.1.7',
+            aspectj: '1.7.0',
+            cglib: '3.1',
+            jdbc: '8.5.4',
+            h2:'1.4.193',
+            mariadb:'1.5.9',
+            jpa:'1.11.1.RELEASE',
+            hibernate:'5.2.10.Final'
+    ]
+}
+[compileJava, compileTestJava]*.options*.encoding = encoding
+
+repositories {
+    mavenCentral()
+}
+def lib = [
+        'spring': [
+                "org.springframework:spring-webmvc:${versions.spring}",
+                "org.springframework:spring-orm:${versions.spring}"
+        ],
+        'test': [
+                "junit:junit:${versions.junit}",
+                "org.springframework:spring-test:${versions.spring}",
+                "org.mockito:mockito-core:1.9.0"
+        ],
+        'servlet': [
+                "javax.servlet:javax.servlet-api:${versions.servletApi}"
+        ],
+        'aop': [
+                "org.aspectj:aspectjrt:${versions.aspectj}",
+                "org.aspectj:aspectjweaver:${versions.aspectj}",
+                "cglib:cglib:${versions.cglib}",
+                "cglib:cglib-nodep:${versions.cglib}"
+        ],
+        'jdbc': [
+                "org.apache.tomcat:tomcat-jdbc:${versions.jdbc}",
+                "com.h2database:h2:${versions.h2}",
+                "org.mariadb.jdbc:mariadb-java-client:${versions.mariadb}"
+        ],
+        'jpa':[
+                "org.springframework.data:spring-data-jpa:${versions.jpa}",
+                "org.hibernate:hibernate-entitymanager:${versions.hibernate}"
+        ]
+]
+
+
+configurations.all {
+    exclude group: "commons-logging", module: "commons-logging"
+}
+
+dependencies {
+    compile lib.spring, 'org.apache.commons:commons-lang3:3.4'
+    testCompile lib.test
+    providedCompile lib.servlet,
+            "javax.servlet.jsp:jsp-api:${versions.jspApi}"
+    compile "javax.servlet:jstl:${versions.jstl}",
+            "org.slf4j:jcl-over-slf4j:${versions.slf4j}",
+            "ch.qos.logback:logback-classic:${versions.logback}",
+            lib.aop, lib.jdbc, lib.jpa
+}
+
+war {
+    archiveName = "${archivesBaseName}.${extension}"
+}
