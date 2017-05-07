@@ -31,7 +31,8 @@ ext {
             hibernate : '5.2.10.Final',
             jackson   : '2.8.8',
             social    : '1.1.4.RELEASE',
-            github    : '1.0.0.M4'
+            github    : '1.0.0.M4',
+            jsoup     : '1.9.2'
     ]
 }
 [compileJava, compileTestJava]*.options*.encoding = encoding
@@ -101,6 +102,7 @@ dependencies {
             "org.slf4j:jcl-over-slf4j:${versions.slf4j}",
             "ch.qos.logback:logback-classic:${versions.logback}",
             lib.aop, lib.jdbc, lib.jpa, lib.jackson, lib.social
+    compile "org.jsoup:jsoup:${versions.jsoup}"
 }
 
 war {
