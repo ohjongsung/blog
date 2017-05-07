@@ -1,15 +1,15 @@
 package io.ohjongsung.blog.entity;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
-import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
+import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  * Created by ohjongsung on 2017-05-07. 포스트 클래스 테스트
