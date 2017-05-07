@@ -17,6 +17,7 @@ import java.util.Set;
  * Created by ohjongsung on 2017-05-06. 각 블로그 포스트
  */
 @Entity
+@SuppressWarnings("serial")
 public class Post {
 
     private static final SimpleDateFormat SLUG_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
