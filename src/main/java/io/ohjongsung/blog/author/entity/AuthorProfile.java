@@ -1,8 +1,8 @@
-package io.ohjongsung.blog.entity;
+package io.ohjongsung.blog.author.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.ohjongsung.blog.support.Link;
+import io.ohjongsung.blog.author.support.Link;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

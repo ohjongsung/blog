@@ -1,5 +1,6 @@
 package io.ohjongsung.blog.entity;
 
+import io.ohjongsung.blog.author.entity.AuthorProfile;
 import io.ohjongsung.blog.support.PostCategory;
 import io.ohjongsung.blog.support.PostFormat;
 

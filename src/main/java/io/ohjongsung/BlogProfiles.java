@@ -1,4 +1,4 @@
-package io.ohjongsung.blog;
+package io.ohjongsung;
 
 /**
  * Created by ohjongsung on 2017-05-06. BolgAppication에서 사용하는 프로파일 정보. 특정 프로파일이 지정되지 않는다면,

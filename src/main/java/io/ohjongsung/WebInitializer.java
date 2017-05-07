@@ -1,4 +1,4 @@
-package io.ohjongsung.blog;
+package io.ohjongsung;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

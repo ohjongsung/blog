@@ -1,6 +1,7 @@
 package io.ohjongsung.blog.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.ohjongsung.blog.author.entity.AuthorProfile;
 import io.ohjongsung.blog.support.PostCategory;
 import io.ohjongsung.blog.support.PostFormat;
 import org.hibernate.annotations.Type;

@@ -1,4 +1,4 @@
-package io.ohjongsung.blog;
+package io.ohjongsung;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @EnableWebMvc // <mvc:annotation-driven />
 @Configuration
-@ComponentScan(basePackages = { "kr.ohjongsung.blog" },
+@ComponentScan(basePackages = { "io.ohjongsung.blog" },
                includeFilters = @ComponentScan.Filter(value = Controller.class, type = FilterType.ANNOTATION))
 public class ServletConfig extends WebMvcConfigurerAdapter {
     @Override

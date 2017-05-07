@@ -1,4 +1,4 @@
-package io.ohjongsung.blog;
+package io.ohjongsung;
 
 import javax.sql.DataSource;
 

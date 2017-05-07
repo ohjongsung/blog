@@ -1,4 +1,4 @@
-package io.ohjongsung.blog.entity;
+package io.ohjongsung.blog.author.entity;
 
 import org.junit.Test;
 

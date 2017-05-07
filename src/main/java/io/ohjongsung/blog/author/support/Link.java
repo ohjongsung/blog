@@ -1,4 +1,4 @@
-package io.ohjongsung.blog.support;
+package io.ohjongsung.blog.author.support;
 
 /**
  * Created by ohjongsung on 2017-05-07. author profile
