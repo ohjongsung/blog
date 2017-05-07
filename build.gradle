@@ -96,7 +96,7 @@ sourceSets {
 
 dependencies {
     compile lib.spring, 'org.apache.commons:commons-lang3:3.4'
-    testCompile lib.test
+
     providedCompile lib.servlet,
             "javax.servlet.jsp:jsp-api:${versions.jspApi}"
     compile "javax.servlet:jstl:${versions.jstl}",
@@ -105,6 +105,13 @@ dependencies {
             lib.aop, lib.jdbc, lib.jpa, lib.jackson, lib.social
     compile "org.jsoup:jsoup:${versions.jsoup}"
     compile "org.pegdown:pegdown:${versions.pegdown}"
+
+    testUtilCompile lib.test
+    testUtilCompile sourceSets.main.output
+    // pick up common test utility classes
+    testCompile sourceSets.testUtil.output
+    testCompile lib.test
+
 }
 
 war {
