@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.Date;
@@ -20,6 +21,7 @@ import java.util.List;
 /**
  * Created by ohjongsung on 2017-05-07. 블로그 서비스
  */
+@Service
 public class BlogService {
 
     private static final Logger logger = LoggerFactory.getLogger(BlogService.class);
