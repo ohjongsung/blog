@@ -1,12 +1,12 @@
 package io.ohjongsung.blog.entity;
 
-import io.ohjongsung.blog.author.entity.AuthorProfile;
-import io.ohjongsung.blog.support.PostCategory;
-import io.ohjongsung.blog.support.PostFormat;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import io.ohjongsung.blog.author.entity.AuthorProfile;
+import io.ohjongsung.blog.support.PostCategory;
+import io.ohjongsung.blog.support.PostFormat;
 
 /**
  * Created by ohjongsung on 2017-05-07. 포스트 테스트 유틸
@@ -123,7 +123,7 @@ public class PostBuilder {
         return this;
     }
 
-    public Post build() {
+    public io.ohjongsung.blog.entity.Post build() {
         Post post = new Post(id, title, rawContent, category, format);
         post.setAuthor(author);
         post.setRenderedContent(renderedContent);
