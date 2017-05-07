@@ -32,7 +32,8 @@ ext {
             jackson   : '2.8.8',
             social    : '1.1.4.RELEASE',
             github    : '1.0.0.M4',
-            jsoup     : '1.9.2'
+            jsoup     : '1.9.2',
+            pegdown   : '1.6.0'
     ]
 }
 [compileJava, compileTestJava]*.options*.encoding = encoding
@@ -103,6 +104,7 @@ dependencies {
             "ch.qos.logback:logback-classic:${versions.logback}",
             lib.aop, lib.jdbc, lib.jpa, lib.jackson, lib.social
     compile "org.jsoup:jsoup:${versions.jsoup}"
+    compile "org.pegdown:pegdown:${versions.pegdown}"
 }
 
 war {
