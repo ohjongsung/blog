@@ -77,6 +77,13 @@ configurations.all {
     exclude group: "commons-logging", module: "commons-logging"
 }
 
+sourceSets {
+    testUtil {
+        java.srcDir 'src/testUtil/java'
+        resources.srcDir 'src/testUtil/resources'
+    }
+}
+
 dependencies {
     compile lib.spring, 'org.apache.commons:commons-lang3:3.4'
     testCompile lib.test
