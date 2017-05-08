@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -58,5 +59,16 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
         viewResolver.setTemplateEngine(templateEngine());
         return viewResolver;
 
+    }
+
+    /**
+     * Handles favicon.ico requests assuring no <code>404 Not Found</code> error is returned.
+     */
+    @Controller
+    static class FaviconController {
+        @RequestMapping("favicon.ico")
+        String favicon() {
+            return "forward:/resources/images/favicon.ico";
+        }
     }
 }
