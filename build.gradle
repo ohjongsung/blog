@@ -84,7 +84,8 @@ def lib = [
                 "org.springframework.social:spring-social-github:${versions.github}"
         ],
         'template': [
-                "org.thymeleaf:thymeleaf-spring4:${versions.thymeleaf}"
+                "org.thymeleaf:thymeleaf-spring4:${versions.thymeleaf}",
+                "nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.2.1"
         ]
 ]
 
