@@ -26,6 +26,6 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
-        servletContext.setInitParameter("spring.profile.active", "development");
+        servletContext.setInitParameter("spring.profiles.active", "development");
     }
 }
