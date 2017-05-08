@@ -7,11 +7,14 @@ import io.ohjongsung.blog.support.PostCategory;
 import io.ohjongsung.blog.support.PostMovedException;
 import io.ohjongsung.blog.support.PostNotFoundException;
 import io.ohjongsung.support.DateFactory;
+import javafx.geometry.Pos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -26,12 +29,14 @@ public class BlogService {
 
     private static final Logger logger = LoggerFactory.getLogger(BlogService.class);
 
+    private final PostFormAdapter postFormAdapter;
     private final PostRepository postRepository;
     private final DateFactory dateFactory;
 
     @Autowired
-    public BlogService(PostRepository postRepository, DateFactory dateFactory) {
+    public BlogService(PostRepository postRepository, PostFormAdapter postFormAdapter, DateFactory dateFactory) {
         this.postRepository = postRepository;
+        this.postFormAdapter = postFormAdapter;
         this.dateFactory = dateFactory;
     }
 
@@ -105,5 +110,38 @@ public class BlogService {
 
     public Page<Post> getAllPosts(Pageable pageRequest) {
         return postRepository.findAll(pageRequest);
+    }
+
+    public Post addPost(PostForm postForm, String username) {
+        Post post = postFormAdapter.createPostFromPostForm(postForm, username);
+        postRepository.save(post);
+        return post;
+    }
+
+    public void updatePost(Post post, PostForm postForm) {
+        postFormAdapter.updatePostFromPostForm(post, postForm);
+        postRepository.save(post);
+    }
+
+    public void deletePost(Post post) {
+        postRepository.delete(post);
+    }
+
+    public void resummarizeAllPosts() {
+        List<Post> posts = postRepository.findAll();
+        for (Post post : posts) {
+            postFormAdapter.summarize(post);
+            postRepository.save(post);
+        }
+    }
+
+    public Page<Post> refreshPosts(int page, int size) {
+        PageRequest pageRequest = new PageRequest(page, size, Sort.Direction.DESC, "id");
+        Page<Post> posts = postRepository.findAll(pageRequest);
+        for (Post post : posts) {
+            postFormAdapter.refreshPost(post);
+            postRepository.save(post);
+        }
+        return posts;
     }
 }
