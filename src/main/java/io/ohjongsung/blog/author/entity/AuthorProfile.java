@@ -3,10 +3,9 @@ package io.ohjongsung.blog.author.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.ohjongsung.blog.author.support.Link;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
+
 import org.hibernate.annotations.Type;
 
 import org.springframework.util.StringUtils;
@@ -14,6 +13,7 @@ import org.springframework.util.StringUtils;
 /**
  * Created by ohjongsung on 2017-05-06. 작성자 정보
  */
+@Entity
 public class AuthorProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
