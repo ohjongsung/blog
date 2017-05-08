@@ -116,6 +116,11 @@ dependencies {
 
 }
 
+task initProject {
+    file(webAppDirName + "/WEB-INF/views").mkdirs()
+    file(webAppDirName + "/META-INF").mkdir()
+}
+
 war {
     archiveName = "${archivesBaseName}.${extension}"
 }
