@@ -5,12 +5,14 @@ import io.ohjongsung.blog.author.repository.AuthorRepository;
 import io.ohjongsung.blog.entity.Post;
 import io.ohjongsung.support.DateFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
 /**
  * Created by ohjongsung on 2017-05-07. PostForm 을 Post 로
  */
+@Service
 public class PostFormAdapter {
     private static final int SUMMARY_LENGTH = 500;
 
