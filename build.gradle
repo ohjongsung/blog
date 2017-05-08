@@ -18,8 +18,8 @@ ext {
             spring    : '4.3.7.RELEASE',
             junit     : '4.12',
             servletApi: '3.0.1',
-            jspApi    : '2.2',
-            jstl      : '1.2',
+            //jspApi    : '2.2',
+            //jstl      : '1.2',
             slf4j     : '1.7.25',
             logback   : '1.1.7',
             aspectj   : '1.7.0',
@@ -33,7 +33,8 @@ ext {
             social    : '1.1.4.RELEASE',
             github    : '1.0.0.M4',
             jsoup     : '1.9.2',
-            pegdown   : '1.6.0'
+            pegdown   : '1.6.0',
+            thymeleaf : '3.0.5.RELEASE'
     ]
 }
 [compileJava, compileTestJava]*.options*.encoding = encoding
@@ -43,44 +44,47 @@ repositories {
     maven { url springRepo }
 }
 def lib = [
-        'spring' : [
+        'spring'  : [
                 "org.springframework:spring-webmvc:${versions.spring}",
                 "org.springframework:spring-orm:${versions.spring}"
         ],
-        'test'   : [
+        'test'    : [
                 "junit:junit:${versions.junit}",
                 "org.springframework:spring-test:${versions.spring}",
                 "org.mockito:mockito-core:1.9.0",
                 "org.hamcrest:hamcrest-library:1.3"
         ],
-        'servlet': [
+        'servlet' : [
                 "javax.servlet:javax.servlet-api:${versions.servletApi}"
         ],
-        'aop'    : [
+        'aop'     : [
                 "org.aspectj:aspectjrt:${versions.aspectj}",
                 "org.aspectj:aspectjweaver:${versions.aspectj}",
                 "cglib:cglib:${versions.cglib}",
                 "cglib:cglib-nodep:${versions.cglib}"
         ],
-        'jdbc'   : [
+        'jdbc'    : [
                 "org.apache.tomcat:tomcat-jdbc:${versions.jdbc}",
                 "com.h2database:h2:${versions.h2}",
                 "org.mariadb.jdbc:mariadb-java-client:${versions.mariadb}"
         ],
-        'jpa'    : [
+        'jpa'     : [
                 "org.springframework.data:spring-data-jpa:${versions.jpa}",
                 "org.hibernate:hibernate-entitymanager:${versions.hibernate}",
                 "org.hibernate:hibernate-validator:5.4.1.Final"
         ],
-        'jackson': [
+        'jackson' : [
                 "com.fasterxml.jackson.core:jackson-core:${versions.jackson}",
                 "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}",
                 "com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}",
                 "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:${versions.jackson}"
         ],
-        'social' : [
+        'social'  : [
                 "org.springframework.social:spring-social-config:${versions.social}",
                 "org.springframework.social:spring-social-github:${versions.github}"
+        ],
+        'template': [
+                "org.thymeleaf:thymeleaf-spring4:${versions.thymeleaf}"
         ]
 ]
 
@@ -98,11 +102,10 @@ sourceSets {
 
 dependencies {
     compile lib.spring, 'org.apache.commons:commons-lang3:3.4'
+    compile lib.template
 
-    providedCompile lib.servlet,
-            "javax.servlet.jsp:jsp-api:${versions.jspApi}"
-    compile "javax.servlet:jstl:${versions.jstl}",
-            "org.slf4j:jcl-over-slf4j:${versions.slf4j}",
+    providedCompile lib.servlet
+    compile "org.slf4j:jcl-over-slf4j:${versions.slf4j}",
             "ch.qos.logback:logback-classic:${versions.logback}",
             lib.aop, lib.jdbc, lib.jpa, lib.jackson, lib.social
     compile "org.jsoup:jsoup:${versions.jsoup}"
