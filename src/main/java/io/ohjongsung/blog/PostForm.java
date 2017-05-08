@@ -1,12 +1,13 @@
 package io.ohjongsung.blog;
 
-import com.sun.istack.internal.NotNull;
+
 import io.ohjongsung.blog.entity.Post;
 import io.ohjongsung.blog.support.PostCategory;
 import io.ohjongsung.blog.support.PostFormat;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
