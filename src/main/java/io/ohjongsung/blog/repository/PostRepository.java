@@ -19,7 +19,7 @@ import java.util.Set;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    Page<Post> findbyCategoryAndDraftFalse(PostCategory category, Pageable pageable);
+    Page<Post> findByCategoryAndDraftFalse(PostCategory category, Pageable pageable);
 
     Page<Post> findByDraftTrue(Pageable pageRequest);
 
