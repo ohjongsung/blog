@@ -5,8 +5,10 @@ package io.ohjongsung.blog.support;
  */
 public enum PostCategory {
 
+    INTRODUCTION("Introduction", "소개"),
     CONCEPT("Concept", "개념"),
     PRACTICE("Practice", "방법"),
+    TIP("Tip", "팁"),
     REVIEW("Review", "서평");
 
     private String displayName;
