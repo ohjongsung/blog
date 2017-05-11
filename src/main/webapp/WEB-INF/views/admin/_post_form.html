@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body>
+<form class="w3-container" layout:fragment="post-form">
+    <div class="w3-col l8 s12">
+        <div class="w3-section w3-margin">
+            <label for="title">Title</label>
+            <input id="title" class="w3-input" type="text" th:field="*{title}" name="title" />
+            <div class="w3-panel" th:classappend="(${#fields.hasErrors('title')}? 'w3-red')">
+                <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Incorrect title</p>
+            </div>
+        </div>
+        <div class="w3-section w3-margin">
+            <label for="content">Content</label>
+            <textarea id="content" class="w3-input" th:field="*{content}" name="content"></textarea>
+            <div class="w3-panel" th:classappend="(${#fields.hasErrors('content')}? 'w3-red')">
+                <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Incorrect content</p>
+            </div>
+        </div>
+        <div class="w3-section w3-margin">
+            <div class="w3-panel w3-blue">
+                <h3>Tips:</h3>
+                <p>Be sure to wrap code blocks in <a href=" https://help.github.com/articles/github-flavored-markdown#syntax-highlighting">code fences</a> (including a language identifier).</p>
+                <p>All valid HTML tags are allowed, even script/iframe/style (to be used with great care...)</p>
+            </div>
+        </div>
+        <div class="w3-section w3-margin" th:if="${create}">
+            <button name="draft" value="true" type="submit" class="w3-button w3-block w3-green w3-section w3-padding">Create new Draft</button>
+        </div>
+        <div class="w3-section w3-margin" th:if="${edit}">
+            <button name="draft" th:if="*{!draft}" value="false" type="submit" class="w3-button w3-block w3-green w3-section w3-padding">Update</button>
+            <button name="draft" th:if="*{draft}" value="true" type="submit" class="w3-button w3-left w3-green w3-section w3-padding" style="width:45%">Save</button>
+            <a th:href="${path}" th:if="*{draft}" target="_blank" class="w3-button w3-right w3-green w3-section w3-padding" role="button" style="width:45%">Preview</a>
+        </div>
+        <div class="w3-section w3-margin" th:if="${edit}">
+            <button name="draft" th:if="*{!draft}" value="true" type="submit" class="w3-button w3-block w3-light-grey w3-section w3-padding">Unpublish</button>
+            <button name="draft" th:if="*{draft}" value="false" type="submit" class="w3-button w3-block w3-light-grey w3-section w3-padding">Publish</button>
+        </div>
+    </div>
+    <div class="w3-col l4">
+        <div class="w3-section w3-margin">
+            <label for="category">Category</label>
+            <select id="category" name="category" th:field="*{category}" class="w3-select">
+                <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.displayName}">Category</option>
+            </select>
+            <div class="w3-panel" th:classappend="(${#fields.hasErrors('category')}? 'w3-red')">
+                <p th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Incorrect category</p>
+            </div>
+        </div>
+        <div class="w3-section w3-margin">
+            <label for="format">Format</label>
+            <select id="format" name="format" th:field="*{format}" class="w3-select">
+                <option th:each="format : ${formats}" th:value="${format.id}" th:text="${format.displayName}">Format</option>
+            </select>
+            <div class="w3-panel" th:classappend="(${#fields.hasErrors('format')}? 'w3-red')">
+                <p th:if="${#fields.hasErrors('format')}" th:errors="*{format}">Incorrect format</p>
+            </div>
+        </div>
+        <div class="w3-section w3-margin">
+            <div id="datetimepicker1" class="input-append date">
+                <input id="publishAt" class="w3-input" type="text" th:field="*{publishAt}" name="publishAt" placeholder="Pick a Date" data-format="yyyy-MM-dd hh:mm" />
+                <span class="add-on">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+            </i>
+          </span>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>
