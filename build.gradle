@@ -16,6 +16,7 @@ ext {
     springRepo = 'http://repo.spring.io/libs-release'
     versions = [
             spring    : '4.3.7.RELEASE',
+            security  : '4.2.2.RELEASE',
             junit     : '4.12',
             servletApi: '3.0.1',
             //jspApi    : '2.2',
@@ -47,6 +48,11 @@ def lib = [
         'spring'  : [
                 "org.springframework:spring-webmvc:${versions.spring}",
                 "org.springframework:spring-orm:${versions.spring}"
+        ],
+        'security'  : [
+                "org.springframework.security:spring-security-core:${versions.security}",
+                "org.springframework.security:spring-security-web:${versions.security}",
+                 "org.springframework.security:spring-security-config:${versions.security}"
         ],
         'test'    : [
                 "junit:junit:${versions.junit}",
@@ -102,7 +108,7 @@ sourceSets {
 }
 
 dependencies {
-    compile lib.spring, 'org.apache.commons:commons-lang3:3.4'
+    compile lib.spring, lib.security, 'org.apache.commons:commons-lang3:3.4'
     compile lib.template
 
     providedCompile lib.servlet
