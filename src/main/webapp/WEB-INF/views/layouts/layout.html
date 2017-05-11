@@ -9,37 +9,26 @@
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/resources/images/favicon.png}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/w3.css}"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </style>
 </head>
-<body class="w3-light-grey w3-content" style="max-width:1600px">
-<!-- Sidebar/menu -->
-<nav th:replace="fragments/sidebar :: nav"></nav>
-<!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:300px">
-    <!-- Header -->
-    <header th:replace="fragments/header :: header"></header>
-    <!-- Content -->
-    <section layout:fragment="content"></section>
+<body class="w3-light-grey">
+    <!-- w3-content defines a container for fixed size centered content,
+    and is wrapped around the whole page content, except for the footer in this example -->
+    <div class="w3-content" style="max-width:1400px">
+        <!-- Header -->
+        <header th:replace="fragments/header :: header"></header>
+        <!-- Grid -->
+        <div class="w3-row">
+            <!-- Content -->
+            <!-- Blog entries -->
+            <div class="w3-col l8 s12" layout:fragment="content"></div>
+            <!-- Introduction menu -->
+            <div class="w3-col l4" layout:include="fragments/introduction :: introduction"></div>
+        </div>
+    </div>
     <!-- Footer -->
     <footer th:replace="fragments/footer :: footer"></footer>
-    <div class="w3-black w3-center w3-padding-24">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
-    <!-- End page content -->
-</div>
-<script>
-    // Script to open and close sidebar
-    function w3_open() {
-        document.getElementById("mySidebar").style.display = "block";
-        document.getElementById("myOverlay").style.display = "block";
-    }
-
-    function w3_close() {
-        document.getElementById("mySidebar").style.display = "none";
-        document.getElementById("myOverlay").style.display = "none";
-    }
-</script>
-
 </body>
 </html>
