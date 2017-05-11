@@ -22,7 +22,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
  */
 @EnableWebMvc // <mvc:annotation-driven />
 @Configuration
-@ComponentScan(basePackages = { "io.ohjongsung.blog" },
+@ComponentScan(basePackages = { "io.ohjongsung" },
                includeFilters = @ComponentScan.Filter(value = Controller.class, type = FilterType.ANNOTATION))
 public class ServletConfig extends WebMvcConfigurerAdapter {
     @Override
