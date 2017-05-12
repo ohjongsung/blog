@@ -11,9 +11,8 @@
         <h2 >
             <a th:href="@{/admin}">Admin</a> : <a th:href="@{/}">Blog</a> : New Post
         </h2>
-        <form layout:include="admin/_post_form :: post-form" th:with="create=1" th:action="@{/admin}" method="post" th:object="${postForm}"></form>
     </div>
+    <form layout:include="admin/_post_form :: post-form" th:with="create=1" th:action="@{/admin}" method="post" th:object="${postForm}"></form>
 </section>
-
 </body>
 </html>

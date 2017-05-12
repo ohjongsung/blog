@@ -7,15 +7,12 @@
 </head>
 <body>
 <section layout:fragment="content">
-<div class="w3-container">
-    <h2 >
-        <b><a th:href="@{/admin}">Admin</a> : <a th:href="@{/}">Blog</a> : Edit Post</b>
-    </h2>
-    <div class="w3-section w3-bottombar w3-padding-16">
-        <form layout:include="admin/_post_form :: post-form" th:with="edit=1" th:action="@{'/admin/' + ${post.id} + '/edit'}" method="post" th:object="${postForm}">
-        </form>
+    <div class="w3-container">
+        <h2 >
+            <b><a th:href="@{/admin}">Admin</a> : <a th:href="@{/}">Blog</a> : Edit Post</b>
+        </h2>
     </div>
-</div>
+    <form layout:include="admin/_post_form :: post-form" th:with="edit=1" th:action="@{'/admin/' + ${post.id} + '/edit'}" method="post" th:object="${postForm}"></form>
 </section>
 </div>
 </body>

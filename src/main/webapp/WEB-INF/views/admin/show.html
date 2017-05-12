@@ -6,8 +6,10 @@
   <title th:inline="text">[[${post.title}]]</title>
 </head>
 <body>
-<div class="w3-col l8 s12" layout:fragment="content" th:object="${post}">
-    <div id="content" class="w3-card-4 w3-margin w3-white" layout:include="views/_full_post :: full-post" ></div>
-</div>
+<section layout:fragment="content">
+    <div class="w3-col l12 s12" th:object="${post}">
+        <div id="content" class="w3-card-4 w3-margin w3-white" layout:include="views/_full_post :: full-post" ></div>
+    </div>
+</section>
 </body>
 </html>
