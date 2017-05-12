@@ -23,9 +23,9 @@
         <div class="w3-row">
             <!-- Content -->
             <!-- Blog entries -->
-            <div class="w3-col l8 s12" layout:fragment="content"></div>
+            <div class="w3-col s12" layout:fragment="content" th:classappend="${#httpServletRequest.requestURI.contains('admin')}? l12 : l8"></div>
             <!-- Introduction menu -->
-            <div class="w3-col l4" layout:include="fragments/introduction :: introduction"></div>
+            <div th:if="${!#httpServletRequest.requestURI.contains('admin')}" class="w3-col l4" layout:include="fragments/introduction :: introduction"></div>
         </div>
     </div>
     <!-- Footer -->
