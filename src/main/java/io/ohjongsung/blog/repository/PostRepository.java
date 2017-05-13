@@ -1,6 +1,6 @@
 package io.ohjongsung.blog.repository;
 
-import io.ohjongsung.blog.author.entity.AuthorProfile;
+import io.ohjongsung.blog.author.entity.MemberProfile;
 import io.ohjongsung.blog.entity.Post;
 import io.ohjongsung.blog.support.PostCategory;
 import org.springframework.data.domain.Page;
@@ -36,7 +36,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Page<Post> findByDraftFalseAndPublishAtAfter(Date now, Pageable pageRequest);
 
     Page<Post> findByDraftFalseAndAuthorAndPublishAtBeforeOrderByPublishAtDesc(
-                                                                               AuthorProfile profile,
+                                                                               MemberProfile profile,
                                                                                Date publishedBefore,
                                                                                Pageable pageRequest);
 
