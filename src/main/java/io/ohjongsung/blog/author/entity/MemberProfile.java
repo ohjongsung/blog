@@ -33,6 +33,9 @@ public class MemberProfile {
     private String bio;
 
     @Column(nullable = true)
+    private String avatarUrl;
+
+    @Column(nullable = true)
     private String githubUsername;
 
     @Column(nullable = false)
@@ -91,6 +94,14 @@ public class MemberProfile {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
     public String getGithubUsername() {
