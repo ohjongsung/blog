@@ -7,14 +7,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.social.github.api.GitHub;
 import org.springframework.social.github.api.GitHubUserProfile;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by ohjongsung on 2017-05-13. GitHub SignInService
  */
+@Service
 public class SignInService {
 
     //private static final String IS_MEMBER_URL = "https://api.github.com/teams/{team}/members/{user}";
-    private static final String IS_MEMBER_URL = "https://api.github.com/orgs/ohjongsung-io/members/{user}";
+    private static final String IS_MEMBER_URL = "https://api.github.com/orgs/{org}/members/{member}";
     private final TeamService teamService;
     private final String gitHubTeamId;
 
