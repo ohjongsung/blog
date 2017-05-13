@@ -15,7 +15,7 @@
         </div>
         <div class="w3-section w3-margin">
             <label for="content">Content</label>
-            <textarea id="content" class="w3-input" th:field="*{content}" name="content"></textarea>
+            <textarea id="content" rows="10" class="w3-input" th:field="*{content}" name="content"></textarea>
             <div class="w3-panel" th:classappend="(${#fields.hasErrors('content')}? 'w3-red')">
                 <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Incorrect content</p>
             </div>
