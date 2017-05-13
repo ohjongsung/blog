@@ -23,8 +23,8 @@
     </div>
 
     <!-- First Photo Grid-->
-    <div th:if="${drafts.totalElements}" class="w3-row-padding">
-        <div class="w3-third w3-container w3-margin-bottom">
+    <div th:if="${drafts.totalElements}" class="w3-col l12 s12">
+        <div class="w3-section w3-margin">
             <h2>Drafts</h2>
             <table class='w3-table w3-striped w3-hoverable'>
                 <tr>
@@ -36,7 +36,7 @@
                 <tr th:each="post : ${drafts}" layout:fragment="post-row">
                     <td class="date" th:text="${post.formattedPublishDate}">June 18, 2013</td>
                     <td class="author">
-                        <a class='author' th:text="${post.author.name}" th:href="@{'/team/'+${post.author.username}}">Author</a>
+                        <a class='author' th:text="${post.author.username}" th:href="@{'/team/'+${post.author.username}}">Author</a>
                     </td>
                     <td th:text="${post.title}">This week in Spring</td>
                     <td>
@@ -48,8 +48,8 @@
     </div>
 
     <!-- Second Photo Grid-->
-    <div th:if="${scheduled.totalElements}" class="w3-row-padding">
-        <div class="w3-third w3-container w3-margin-bottom">
+    <div th:if="${scheduled.totalElements}" class="w3-col l12 s12">
+        <div class="w3-section w3-margin">
             <h2>Scheduled</h2>
             <table class='w3-table w3-striped w3-hoverable'>
                 <tr>
@@ -65,8 +65,8 @@
     </div>
 
     <!-- Third Photo Grid-->
-    <div th:if="${posts.totalElements}" class="w3-row-padding">
-        <div class="w3-third w3-container w3-margin-bottom">
+    <div th:if="${posts.totalElements}" class="w3-col l12 s12">
+        <div class="w3-section w3-margin">
             <h2>Published</h2>
             <table class='w3-table w3-striped w3-hoverable'>
                 <tr>
