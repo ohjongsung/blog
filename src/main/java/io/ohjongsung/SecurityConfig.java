@@ -13,8 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,7 +30,6 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.header.writers.HstsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.AnyRequestMatcher;
@@ -43,8 +40,6 @@ import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.social.connect.web.SignInAdapter;
 import org.springframework.social.github.api.GitHub;
-import org.springframework.social.github.api.GitHubUserProfile;
-import org.springframework.social.github.api.impl.GitHubTemplate;
 import org.springframework.social.github.connect.GitHubConnectionFactory;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -62,13 +57,13 @@ public class SecurityConfig {
     static final String SIGNIN_SUCCESS_PATH = "/signin/success";
 
     @Configuration
-    @Order(Ordered.LOWEST_PRECEDENCE - 100)
+    @Order(Ordered.LOWEST_PRECEDENCE - 90)
     protected static class SigninAuthenticationConfig extends WebSecurityConfigurerAdapter {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             configureHeaders(http.headers());
-            http.requestMatchers().antMatchers("/signin/**", "/blog/**").and()
+            http.requestMatchers().antMatchers("/signin/**", "/**").and()
                     .addFilterBefore(authenticationFilter(),
                             AnonymousAuthenticationFilter.class).anonymous().and().csrf()
                     .disable();
@@ -89,60 +84,7 @@ public class SecurityConfig {
     }
 
     @Configuration
-    @Order(Ordered.LOWEST_PRECEDENCE - 80)
-    protected static class ApiAuthenticationConfig extends WebSecurityConfigurerAdapter {
-
-        @Autowired
-        private SignInService signInService;
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            configureHeaders(http.headers());
-            http.requestMatchers().antMatchers("/project_metadata/**")
-                    .and().authorizeRequests().antMatchers(HttpMethod.HEAD, "/project_metadata/*").permitAll()
-                    .antMatchers(HttpMethod.GET, "/project_metadata/*").permitAll()
-                    .anyRequest().authenticated()
-                    .and()
-                    .addFilterAfter(githubBasicAuthFilter(), BasicAuthenticationFilter.class)
-                    .csrf().disable();
-        }
-
-        private Filter githubBasicAuthFilter() {
-            return new BasicAuthenticationFilter(githubAuthenticationManager());
-        }
-
-        private AuthenticationManager githubAuthenticationManager() {
-            return new AuthenticationManager() {
-
-                @Override
-                public Authentication authenticate(Authentication input) throws AuthenticationException {
-
-                    GitHubTemplate gitHub = new GitHubTemplate(input.getName());
-                    GitHubUserProfile userInfo = null;
-                    try {
-                        userInfo = gitHub.userOperations().getUserProfile();
-                    } catch (Exception e) {
-                        throw new BadCredentialsException("Cannot authenticate");
-                    }
-                    if (!signInService.isTeamMember(userInfo.getUsername(), gitHub)) {
-                        throw new BadCredentialsException("User not member of required org");
-                    }
-
-                    MemberProfile member = signInService.getOrCreateMemberProfile(new Long(userInfo.getId()), gitHub);
-                    Authentication authentication = new UsernamePasswordAuthenticationToken(
-                            member.getId(), member.getGithubUsername(),
-                            AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
-                    return authentication;
-
-                }
-
-            };
-        }
-    }
-
-    @Configuration
-    @Order(Ordered.LOWEST_PRECEDENCE - 90)
+    @Order(Ordered.LOWEST_PRECEDENCE - 100)
     protected static class AdminAuthenticationConfig extends WebSecurityConfigurerAdapter {
 
         @Autowired
@@ -169,7 +111,7 @@ public class SecurityConfig {
                     }, ExceptionTranslationFilter.class);
             http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/signout"))
                     .logoutSuccessUrl("/").and().authorizeRequests().anyRequest()
-                    .authenticated();
+                    .authenticated().and().csrf().disable();
         }
 
         private AuthenticationEntryPoint authenticationEntryPoint() {
