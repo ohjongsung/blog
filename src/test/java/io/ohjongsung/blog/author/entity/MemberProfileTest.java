@@ -11,11 +11,11 @@ import static org.hamcrest.core.IsNull.nullValue;
 /**
  * Created by ohjongsung on 2017-05-07. 작성자 프로필 테스트
  */
-public class AuthorProfileTest {
+public class MemberProfileTest {
 
     @Test
     public void fullNameUsesNameIfAvailable() {
-        AuthorProfile nick = new AuthorProfile();
+        MemberProfile nick = new MemberProfile();
         nick.setUsername("ohjongsung");
         nick.setName("JongSung OH");
         assertThat(nick.getFullName(), equalTo("JongSung OH"));
@@ -23,7 +23,7 @@ public class AuthorProfileTest {
 
     @Test
     public void fullNameFallsBackToUsername() {
-        AuthorProfile nick = new AuthorProfile();
+        MemberProfile nick = new MemberProfile();
         nick.setUsername("ohjongsung");
         nick.setName(null);
         assertThat(nick.getFullName(), equalTo("ohjongsung"));
@@ -31,7 +31,7 @@ public class AuthorProfileTest {
 
     @Test
     public void githubLink() {
-        AuthorProfile nick = new AuthorProfile();
+        MemberProfile nick = new MemberProfile();
         nick.setGithubUsername("ohjongsung");
         assertThat(nick.getGithubLink().getHref(), equalTo("https://github.com/ohjongsung"));
         assertThat(nick.getGithubLink().getText(), equalTo("github.com/ohjongsung"));
@@ -39,20 +39,20 @@ public class AuthorProfileTest {
 
     @Test
     public void emptyGithubLink() {
-        AuthorProfile nick = new AuthorProfile();
+        MemberProfile nick = new MemberProfile();
         assertThat(nick.getGithubLink(), is(nullValue()));
     }
 
     @Test
     public void nullGithubLink() {
-        AuthorProfile nick = new AuthorProfile();
+        MemberProfile nick = new MemberProfile();
         nick.setGithubUsername("");
         assertThat(nick.getGithubLink(), is(nullValue()));
     }
 
     @Test
     public void isNotHiddenByDefault() {
-        AuthorProfile nick = new AuthorProfile();
+        MemberProfile nick = new MemberProfile();
         assertThat(nick.isHidden(), is(false));
     }
 }

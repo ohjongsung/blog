@@ -18,8 +18,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import io.ohjongsung.blog.author.entity.AuthorProfile;
-import io.ohjongsung.blog.author.repository.AuthorRepository;
+import io.ohjongsung.blog.author.entity.MemberProfile;
+import io.ohjongsung.blog.author.repository.TeamRepository;
 import io.ohjongsung.blog.entity.Post;
 import io.ohjongsung.blog.support.PostCategory;
 import io.ohjongsung.support.DateFactory;
@@ -47,7 +47,7 @@ public class PostFormAdapterTest_CreatePostTest {
     @Mock
     private DateFactory dateFactory;
     @Mock
-    private AuthorRepository authorRepository;
+    private TeamRepository teamRepository;
     @Mock
     private PostSummary postSummary;
     @Mock
@@ -61,16 +61,16 @@ public class PostFormAdapterTest_CreatePostTest {
 
     @Before
     public void setUp() throws Exception {
-        AuthorProfile profile = new AuthorProfile();
+        MemberProfile profile = new MemberProfile();
         profile.setUsername(AUTHOR_USERNAME);
         profile.setName(AUTHOR_NAME);
-        given(authorRepository.findByUsername(AUTHOR_USERNAME)).willReturn(profile);
+        given(teamRepository.findByUsername(AUTHOR_USERNAME)).willReturn(profile);
 
         given(renderer.render(content)).willReturn(RENDERED_HTML);
         given(postSummary.forContent(anyString(), anyInt())).willReturn(RENDERED_SUMMARY);
         given(dateFactory.now()).willReturn(now);
 
-        adapter = new PostFormAdapter(renderer, postSummary, dateFactory, authorRepository);
+        adapter = new PostFormAdapter(renderer, postSummary, dateFactory, teamRepository);
 
         postForm = new PostForm();
         postForm.setTitle(title);

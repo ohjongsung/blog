@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import io.ohjongsung.blog.author.repository.AuthorRepository;
+import io.ohjongsung.blog.author.repository.TeamRepository;
 import io.ohjongsung.blog.entity.Post;
 import io.ohjongsung.blog.entity.PostBuilder;
 import io.ohjongsung.blog.support.PostCategory;
@@ -45,7 +45,7 @@ public class PostFormAdapterTest_UpdatePostTest {
     @Mock
     private DateFactory dateFactory;
     @Mock
-    private AuthorRepository authorRepository;
+    private TeamRepository teamRepository;
     @Mock
     private PostSummary postSummary;
     @Mock
@@ -68,7 +68,7 @@ public class PostFormAdapterTest_UpdatePostTest {
         postForm.setBroadcast(broadcast);
         postForm.setPublishAt(publishAt);
 
-        postFormAdapter = new PostFormAdapter(renderer, postSummary, dateFactory, authorRepository);
+        postFormAdapter = new PostFormAdapter(renderer, postSummary, dateFactory, teamRepository);
         postFormAdapter.updatePostFromPostForm(post, postForm);
     }
 
