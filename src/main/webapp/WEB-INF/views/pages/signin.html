@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/layout"
+      lang="ko">
+<head>
+    <title>Sign In</title>
+</head>
+<body>
+<section layout:fragment="content" class="container">
+    <div class="w3-col l8 s12">
+        <div class="w3-section w3-margin">
+            <div th:if="${param.error}" class="w3-panel w3-blue">
+                <h3>Info:</h3>
+                <p>We could not
+                    authenticate you with Github. You must authenticate and authorize
+                    this application to access your Github profile before you can use the
+                    admin features. This application can not access any private
+                    information (like passwords), from Github, only the public profile.</p>
+            </div>
+        </div>
+        <div class="w3-section w3-margin">
+            <p th:unless="${param.error}">
+                Please sign in with Github to access the admin pages.
+            </p>
+            <form action="/signin/github" th:action="@{/signin/github}"
+                  method="post">
+                <button type="submit" class="w3-button">
+                    Sign in with github
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>
