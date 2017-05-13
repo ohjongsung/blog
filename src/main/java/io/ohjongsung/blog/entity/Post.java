@@ -1,7 +1,7 @@
 package io.ohjongsung.blog.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.ohjongsung.blog.author.entity.AuthorProfile;
+import io.ohjongsung.blog.author.entity.MemberProfile;
 import io.ohjongsung.blog.support.PostCategory;
 import io.ohjongsung.blog.support.PostFormat;
 import org.hibernate.annotations.Type;
@@ -27,7 +27,7 @@ public class Post {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
-    private AuthorProfile author;
+    private MemberProfile author;
 
     @Column(nullable = false)
     private String title;
@@ -91,11 +91,11 @@ public class Post {
         return id;
     }
 
-    public AuthorProfile getAuthor() {
+    public MemberProfile getAuthor() {
         return author;
     }
 
-    public void setAuthor(AuthorProfile author) {
+    public void setAuthor(MemberProfile author) {
         this.author = author;
     }
 

@@ -1,7 +1,7 @@
 package io.ohjongsung.blog;
 
-import io.ohjongsung.blog.author.entity.AuthorProfile;
-import io.ohjongsung.blog.author.repository.AuthorRepository;
+import io.ohjongsung.blog.author.entity.MemberProfile;
+import io.ohjongsung.blog.author.repository.TeamRepository;
 import io.ohjongsung.blog.entity.Post;
 import io.ohjongsung.support.DateFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,21 +19,21 @@ public class PostFormAdapter {
     private final PostContentRenderer renderer;
     private final PostSummary postSummary;
     private final DateFactory dateFactory;
-    private final AuthorRepository authorRepository;
+    private final TeamRepository teamRepository;
 
     @Autowired
     public PostFormAdapter(PostContentRenderer renderer, PostSummary postSummary, DateFactory dateFactory,
-                           AuthorRepository authorRepository) {
+                           TeamRepository teamRepository) {
         this.renderer = renderer;
         this.postSummary = postSummary;
         this.dateFactory = dateFactory;
-        this.authorRepository = authorRepository;
+        this.teamRepository = teamRepository;
     }
 
     public Post createPostFromPostForm(PostForm postForm, String username) {
         String content = postForm.getContent();
         Post post = new Post(postForm.getTitle(), content, postForm.getCategory(), postForm.getFormat());
-        AuthorProfile profile = authorRepository.findByUsername(username);
+        MemberProfile profile = teamRepository.findByUsername(username);
         post.setAuthor(profile);
         post.setCreatedAt(createdDate(postForm, dateFactory.now()));
 

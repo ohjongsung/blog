@@ -1,13 +1,12 @@
 package io.ohjongsung.blog;
 
-import io.ohjongsung.blog.author.entity.AuthorProfile;
+import io.ohjongsung.blog.author.entity.MemberProfile;
 import io.ohjongsung.blog.entity.Post;
 import io.ohjongsung.blog.repository.PostRepository;
 import io.ohjongsung.blog.support.PostCategory;
 import io.ohjongsung.blog.support.PostMovedException;
 import io.ohjongsung.blog.support.PostNotFoundException;
 import io.ohjongsung.support.DateFactory;
-import javafx.geometry.Pos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,7 +103,7 @@ public class BlogService {
         return postRepository.findByBroadcastAndDraftFalseAndPublishAtBefore(true, dateFactory.now(), pageRequest);
     }
 
-    public Page<Post> getPublishedPostsForMember(AuthorProfile profile, Pageable pageRequest) {
+    public Page<Post> getPublishedPostsForMember(MemberProfile profile, Pageable pageRequest) {
         return postRepository.findByDraftFalseAndAuthorAndPublishAtBeforeOrderByPublishAtDesc(profile, dateFactory.now(), pageRequest);
     }
 

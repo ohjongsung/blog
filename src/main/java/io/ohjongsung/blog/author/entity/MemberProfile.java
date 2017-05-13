@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
  * Created by ohjongsung on 2017-05-06. 작성자 정보
  */
 @Entity
-public class AuthorProfile {
+public class MemberProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,11 +44,11 @@ public class AuthorProfile {
     @Column
     private boolean hidden;
 
-    public AuthorProfile() {
+    public MemberProfile() {
     }
 
     /** For unit testing purposes */
-    AuthorProfile(Long id) {
+    MemberProfile(Long id) {
         this.id = id;
     }
 
@@ -143,7 +143,7 @@ public class AuthorProfile {
             return false;
         }
 
-        AuthorProfile that = (AuthorProfile) o;
+        MemberProfile that = (MemberProfile) o;
 
         if (hidden != that.hidden) {
             return false;
