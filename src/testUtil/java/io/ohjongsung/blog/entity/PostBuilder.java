@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import io.ohjongsung.blog.author.entity.AuthorProfile;
+import io.ohjongsung.blog.author.entity.MemberProfile;
 import io.ohjongsung.blog.support.PostCategory;
 import io.ohjongsung.blog.support.PostFormat;
 
@@ -14,7 +14,7 @@ import io.ohjongsung.blog.support.PostFormat;
 public class PostBuilder {
     private Long id;
     private String title;
-    private AuthorProfile author;
+    private MemberProfile author;
     private PostCategory category;
     private PostFormat format;
     private String rawContent;
@@ -27,7 +27,7 @@ public class PostBuilder {
 
     public PostBuilder() {
         title = "My Post";
-        author = new AuthorProfile();
+        author = new MemberProfile();
         author.setUsername("test");
         category = PostCategory.CONCEPT;
         format = PostFormat.MARKDOWN;
@@ -48,7 +48,7 @@ public class PostBuilder {
         return this;
     }
 
-    public PostBuilder author(AuthorProfile author) {
+    public PostBuilder author(MemberProfile author) {
         this.author = author;
         return this;
     }
