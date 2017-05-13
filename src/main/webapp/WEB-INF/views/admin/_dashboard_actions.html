@@ -6,7 +6,7 @@
 <nav class="w3-animate-top" layout:fragment="dashboard-actions">
     <span><a class="w3-button" th:href="@{${post.path}}" href="/admin/show">View</a></span>
     <span><a class="w3-button" th:href="@{${post.editPath}}" href="/admin/edit">Edit</a></span>
-    <span><form th:action="@{${post.updatePath}}" method="post">
+    <span><form th:action="@{${post.updatePath}}" method="POST">
         <input type="hidden" name="_method" value="DELETE"/>
         <button class="w3-button" type="submit" name="delete">Delete</button>
     </form></span>

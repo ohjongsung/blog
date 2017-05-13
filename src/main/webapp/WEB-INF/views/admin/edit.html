@@ -12,7 +12,7 @@
             <b><a th:href="@{/admin}">Admin</a> : <a th:href="@{/}">Blog</a> : Edit Post</b>
         </h2>
     </div>
-    <form layout:include="admin/_post_form :: post-form" th:with="edit=1" th:action="@{'/admin/' + ${post.id} + '/edit'}" method="post" th:object="${postForm}"></form>
+    <form layout:include="admin/_post_form :: post-form" th:with="edit=1" th:action="@{'/admin/' + ${post.id} + '/edit'}" method="POST" th:object="${postForm}"></form>
 </section>
 </div>
 </body>

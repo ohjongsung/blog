@@ -4,6 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <body>
 <form class="w3-container" layout:fragment="post-form">
+    <input type="hidden" name="_method" value="PUT" th:if="${edit}" />
     <div class="w3-col l8 s12">
         <div class="w3-section w3-margin">
             <label for="title">Title</label>
