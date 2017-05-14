@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
  */
 @Configuration
 @Import({ DevelopmentDatabaseConfig.class, StagingDatabaseConfig.class, ProductionDatabaseConfig.class,
-        PersistenceConfig.class, GitHubConfig.class, SecurityConfig.class })
+        DevelopmentPersistenceConfig.class, ProductionStagingPersistenceConfig.class, GitHubConfig.class, SecurityConfig.class })
 @ComponentScan(basePackages = { "io.ohjongsung" },
                excludeFilters = @ComponentScan.Filter(value = { Controller.class, Configuration.class },
                                                       type = FilterType.ANNOTATION))
