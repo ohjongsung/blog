@@ -3,10 +3,10 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <body>
-<div class="w3-container" layout:fragment="dashboard-actions">
-    <div class="w3-bar w3-light-grey">
-        <div class="w3-dropdown-hover">
-            <button class="w3-button">Action</button>
+<!--<span class="w3-button w3-white w3-xlarge w3-right" layout:fragment="dashboard-actions">
+    <span class="w3-bar w3-light-grey">
+        <span class="w3-dropdown-hover">
+            <span class="w3-button">Action</span>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
                 <a class="w3-button w3-bar-item" th:href="@{${post.path}}" href="/admin/show">View</a>
                 <a class="w3-button w3-bar-item" th:href="@{${post.editPath}}" href="/admin/edit">Edit</a>
@@ -15,8 +15,19 @@
                     <button class="w3-button w3-bar-item" type="submit" name="delete">Delete</button>
                 </form>
             </div>
-        </div>
-    </div>
+        </span>
+    </span>
+</span>-->
+<span class="w3-dropdown-hover w3-white w3-right" layout:fragment="dashboard-actions">
+    <button class="w3-button w3-black">Action</button>
+    <div class="w3-dropdown-content w3-bar-block w3-border">
+    <a class="w3-button w3-bar-item" th:href="@{${post.path}}" href="/admin/show">View</a>
+    <a class="w3-button w3-bar-item" th:href="@{${post.editPath}}" href="/admin/edit">Edit</a>
+    <form th:action="@{${post.updatePath}}" method="POST">
+        <input type="hidden" name="_method" value="DELETE"/>
+        <button class="w3-button w3-bar-item" type="submit" name="delete">Delete</button>
+    </form>
 </div>
+</span>
 </body>
 </html>

@@ -9,14 +9,17 @@
     <div class="w3-card-4 w3-margin w3-white" layout:fragment="full-post" th:object="${post}">
       <div class="w3-container">
         <h1 th:text="*{title}">Blog post</h1>
-        <span sec:authorize="fullyAuthenticated">
+        <span sec:authorize="isAuthenticated()">
           [<a id="edit" th:href="@{/admin/{id}-{slug}/edit(id=${post.id},slug=${slug})}">Edit</a>]
         </span>
       </div>
       <div class="w3-container">
-        <h5><span class="w3-tag w3-teal w3-left w3-margin" th:text="${category.displayName}">Engineering</span></h5>
+        <!--<h5><span class="w3-tag w3-teal w3-left w3-margin" th:text="${post.category.displayName}">Engineering</span></h5>
         <h5><span class="w3-tag w3-teal w3-left w3-margin" th:text="${post.author.name}">Author</span></h5>
-        <h5><time class='w3-tag w3-teal w3-left w3-margin' pubdate th:datetime="${post.publishAt}" th:text='${post.formattedPublishDate}'>June 18, 2013</time></h5>
+        <h5><time class='w3-tag w3-teal w3-left w3-margin' pubdate th:datetime="${post.publishAt}" th:text='${post.formattedPublishDate}'>June 18, 2013</time></h5>-->
+        <span th:text="${post.category}" class="w3-tag w3-blue">Title description</span>
+        <span th:text="${post.author.name}" class="w3-tag w3-teal">author</span>
+        <span pubdate th:datetime="${post.publishAt}" th:text='${post.formattedPublishDate}' class="w3-opacity">April 7, 2014</span>
       </div>
       <div class="w3-container" th:utext="*{renderedContent}">
         Blog content

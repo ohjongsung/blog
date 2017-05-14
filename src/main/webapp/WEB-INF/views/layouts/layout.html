@@ -16,7 +16,7 @@
 <body class="w3-light-grey">
     <!-- w3-content defines a container for fixed size centered content,
     and is wrapped around the whole page content, except for the footer in this example -->
-    <div class="w3-content" style="max-width:1400px">
+    <div class="w3-content" style="max-width:1140px">
         <!-- Header -->
         <header th:replace="fragments/header :: header"></header>
         <!-- Grid -->
@@ -25,7 +25,7 @@
             <!-- Blog entries -->
             <section layout:fragment="content"></section>
             <!-- Introduction menu -->
-            <div th:if="${!#httpServletRequest.requestURI.contains('admin')}" class="w3-col l4" layout:include="fragments/introduction :: introduction"></div>
+            <div th:if="${!#httpServletRequest.requestURI.contains('admin')}" class="w3-col l3" layout:include="fragments/introduction :: introduction"></div>
         </div>
     </div>
     <!-- Footer -->

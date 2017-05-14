@@ -1,5 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       layout:decorator="layouts/layout"
       lang="ko">
 <head>
@@ -7,10 +8,10 @@
 </head>
 <body>
 <section layout:fragment="content" class="container">
-    <div class="w3-col l12 s12">
+    <div class="w3-col l12 s12 ">
         <div class="w3-section w3-margin">
             <h2 >
-                <b><a th:href="@{/admin}">Admin</a> : Blog</b>
+                <b>Admin: <a th:href="@{/}">Blog</a></b>
             </h2>
         </div>
         <div class="w3-section w3-margin">
@@ -28,18 +29,17 @@
     <div th:if="${drafts.totalElements}" class="w3-col l12 s12">
         <div class="w3-section w3-margin">
             <h2>Drafts</h2>
-            <table class='w3-table-all'>
-                <tr th:each="post : ${drafts}" layout:fragment="post-row">
-                    <td class="date" th:text="${post.formattedPublishDate}">June 18, 2013</td>
-                    <td class="author">
-                        <a class='author' th:text="${post.author.name}" th:href="@{'/team/'+${post.author.username}}">Author</a>
-                    </td>
-                    <td th:text="${post.title}">This week in Spring</td>
-                    <td>
-                        <div layout:replace="admin/_dashboard_actions :: dashboard-actions" />
-                    </td>
-                </tr>
-            </table>
+            <ul class="w3-ul w3-card-4">
+                <li th:each="post : ${drafts}" layout:fragment="post-row" class="w3-padding-16">
+                    <!--<span class="w3-button w3-white w3-xlarge w3-right" layout:replace="admin/_dashboard_actions :: dashboard-actions">×</span>-->
+                    <span class="w3-dropdown-hover w3-white w3-right" layout:replace="admin/_dashboard_actions :: dashboard-actions">×</span>
+                    <img th:src="${post.author.avatarUrl}" class="w3-left w3-circle w3-margin-right" style="width:50px">
+                    <span class="w3-large" th:text="${post.author.name}">Jane</span><br>
+                    <span th:text="${post.formattedPublishDate}">Accountant</span>
+
+                    <span class="w3-center" th:text="${post.title}">This week in Spring</span>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -47,10 +47,9 @@
     <div th:if="${scheduled.totalElements}" class="w3-col l12 s12">
         <div class="w3-section w3-margin">
             <h2>Scheduled</h2>
-            <table class='w3-table-all'>
-                <tr th:each="post : ${scheduled}" layout:include="admin/index::post-row">
-                </tr>
-            </table>
+            <ul class="w3-ul w3-card-4">
+                <li th:each="post : ${scheduled}" layout:include="admin/index::post-row" class="w3-padding-16"></li>
+            </ul>
         </div>
     </div>
 
@@ -58,10 +57,9 @@
     <div th:if="${posts.totalElements}" class="w3-col l12 s12">
         <div class="w3-section w3-margin">
             <h2>Published</h2>
-            <table class='w3-table-all'>
-                <tr th:each="post : ${posts}" layout:include="admin/index::post-row">
-                </tr>
-            </table>
+            <ul class="w3-ul w3-card-4">
+                <li th:each="post : ${posts}" layout:include="admin/index::post-row" class="w3-padding-16"></li>
+            </ul>
         </div>
     </div>
 
