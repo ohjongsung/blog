@@ -5,11 +5,11 @@ package io.ohjongsung.blog.support;
  */
 public enum PostCategory {
 
-    INTRODUCTION("INTRODUCTION", "INTRODUCTION"),
-    CONCEPT("CONCEPT", "CONCEPT"),
-    PRACTICE("PRACTICE", "PRACTICE"),
-    TIP("TIP", "TIP"),
-    REVIEW("REVIEW", "REVIEW");
+    INTRODUCTION("Introduction", "introduction"),
+    CONCEPT("Concept", "concept"),
+    PRACTICE("Practice", "practice"),
+    TIP("Tip", "tip"),
+    REVIEW("Review", "review");
 
     private String displayName;
     private String urlSlug;
