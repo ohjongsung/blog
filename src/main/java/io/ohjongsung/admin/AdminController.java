@@ -27,6 +27,7 @@ import io.ohjongsung.support.nav.PageableFactory;
 import io.ohjongsung.support.nav.PaginationInfo;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
@@ -98,6 +99,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "", method = { POST })
+    @Transactional
     public String createPost(Principal principal, @Valid PostForm postForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("categories", PostCategory.values());
@@ -120,6 +122,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/{postId:[0-9]+}{slug:.*}/edit", method = PUT)
+    @Transactional
     public String updatePost(@PathVariable Long postId, @Valid PostForm postForm, BindingResult bindingResult,
                              Model model) {
         Post post = service.getPost(postId);
@@ -137,6 +140,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/{postId:[0-9]+}{slug:.*}", method = DELETE)
+    @Transactional
     public String deletePost(@PathVariable Long postId) {
         Post post = service.getPost(postId);
         service.deletePost(post);
@@ -144,12 +148,14 @@ public class AdminController {
     }
 
     @RequestMapping(value = "resummarize", method = POST)
+    @Transactional
     public String resummarizeAllBlogPosts() {
         service.resummarizeAllPosts();
         return "redirect:/admin";
     }
 
     @RequestMapping(value = "refreshblogposts", method = POST)
+    @Transactional
     @ResponseBody
     public String refreshBlogPosts(
             @RequestParam(value="page", defaultValue = "1", required = false) int page,

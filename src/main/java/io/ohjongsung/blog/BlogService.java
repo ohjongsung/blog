@@ -112,20 +112,17 @@ public class BlogService {
         return postRepository.findAll(pageRequest);
     }
 
-    @Transactional
     public Post addPost(PostForm postForm, String username) {
         Post post = postFormAdapter.createPostFromPostForm(postForm, username);
         postRepository.save(post);
         return post;
     }
 
-    @Transactional
     public void updatePost(Post post, PostForm postForm) {
         postFormAdapter.updatePostFromPostForm(post, postForm);
         postRepository.save(post);
     }
 
-    @Transactional
     public void deletePost(Post post) {
         postRepository.delete(post);
     }
