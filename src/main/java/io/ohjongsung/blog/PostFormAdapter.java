@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @Service
 public class PostFormAdapter {
-    private static final int SUMMARY_LENGTH = 500;
+    private static final int SUMMARY_LENGTH = 100;
 
     private final PostContentRenderer renderer;
     private final PostSummary postSummary;
