@@ -215,7 +215,7 @@ public class Post {
             return "";
         }
 
-        String cleanedTitle = title.toLowerCase().replace("\n", " ").replaceAll("[^a-z\\d\\s]", " ");
+        String cleanedTitle = title.toLowerCase().replace("\n", " ").replaceAll("[^a-z\\가-힣\\d\\s]", " ");
         return StringUtils.arrayToDelimitedString(StringUtils.tokenizeToStringArray(cleanedTitle, " "), "-");
     }
 
