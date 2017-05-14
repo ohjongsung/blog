@@ -1,10 +1,12 @@
 package io.ohjongsung;
 
+import io.ohjongsung.blog.support.PostCategoryFormatter;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ViewResolver;
@@ -34,6 +36,10 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
 
     @Override public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/signin").setViewName("pages/signin");
+    }
+
+    @Override public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new PostCategoryFormatter());
     }
 
     @Bean
