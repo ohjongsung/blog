@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.Date;
@@ -111,17 +112,20 @@ public class BlogService {
         return postRepository.findAll(pageRequest);
     }
 
+    @Transactional
     public Post addPost(PostForm postForm, String username) {
         Post post = postFormAdapter.createPostFromPostForm(postForm, username);
         postRepository.save(post);
         return post;
     }
 
+    @Transactional
     public void updatePost(Post post, PostForm postForm) {
         postFormAdapter.updatePostFromPostForm(post, postForm);
         postRepository.save(post);
     }
 
+    @Transactional
     public void deletePost(Post post) {
         postRepository.delete(post);
     }
