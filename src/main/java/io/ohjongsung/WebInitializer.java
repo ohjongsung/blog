@@ -1,5 +1,6 @@
 package io.ohjongsung;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -27,11 +28,11 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
     }
 
     @Override protected Filter[] getServletFilters() {
-        return new Filter[] { new HiddenHttpMethodFilter() };
+        return new Filter[] { new CharacterEncodingFilter("UTF-8", true), new HiddenHttpMethodFilter() };
     }
 
     @Override public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
-        servletContext.setInitParameter("spring.profiles.active", "development");
+        servletContext.setInitParameter("spring.profiles.active", "staging");
     }
 }
