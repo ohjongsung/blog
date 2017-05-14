@@ -19,6 +19,12 @@
     </div>
     <hr>
     <div class="w3-panel">
+        <p class="w3-leftbar w3-border-green"><a class="w3-margin-left" href="/">All Posts</a></p>
+        <p class="w3-leftbar"><a class="w3-margin-left" th:href="@{/category/introduction}">Introduction</a></p>
+        <p class="w3-leftbar"><a class="w3-margin-left" href="/category/concept">Concept</a></p>
+        <p class="w3-leftbar"><a class="w3-margin-left" href="/category/practice">Practice</a></p>
+        <p class="w3-leftbar"><a class="w3-margin-left" href="/category/tip">Tip</a></p>
+        <p class="w3-leftbar"><a class="w3-margin-left" href="/category/review">Review</a></p>
        <!-- <ul class="w3-ul">
             <li th:class="${@uih.blogClass(activeCategory?:'','All Posts')}">
                 <div class="icon blog-icon all-posts"></div>
@@ -31,12 +37,6 @@
                 <a th:href="@{'/blog/category/'+${category.urlSlug}}+'.atom'" class="pull-right"><i class="icon-rss"></i></a>
             </li>
         </ul>-->
-        <ul class="w3-ul">
-            <li><a href="/">All Posts</a></li>
-            <li><a href="/">Introduction</a></li>
-            <li><a href="/">Concept</a></li>
-            <li><a href="/">Pratice</a></li>
-        </ul>
     </div>
 
     <!-- Posts 추후 개발-->
