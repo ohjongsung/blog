@@ -9,16 +9,23 @@
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/resources/images/favicon.png}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/w3.css}"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </style>
 </head>
 <body class="w3-light-grey">
+<div class="w3-content" style="max-width:2000px">
+    <!-- Header -->
+    <div class="mySlides w3-display-container w3-center">
+        <img src="/resources/images/header_image.jpg" style="width:100%">
+        <header th:replace="fragments/header :: header"></header>
+    </div>
+</div>
     <!-- w3-content defines a container for fixed size centered content,
     and is wrapped around the whole page content, except for the footer in this example -->
     <div class="w3-content" style="max-width:1140px">
-        <!-- Header -->
-        <header th:replace="fragments/header :: header"></header>
+
         <!-- Grid -->
         <div class="w3-row">
             <!-- Content -->

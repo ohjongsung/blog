@@ -9,15 +9,15 @@
 <body>
 <section layout:fragment="content" class="container">
     <div class="w3-col l12 s12 ">
-        <div class="w3-section w3-margin">
+        <div class="w3-section">
             <h2 >
                 <b>Admin: <a th:href="@{/}">Blog</a></b>
             </h2>
         </div>
-        <div class="w3-section w3-margin">
+        <div class="w3-section">
             <a th:href="@{'/admin/new'}" href="/admin/blog/new" class="w3-button w3-green w3-left">Create New Post</a>
             <form th:action="@{'/admin/resummarize'}" action="/admin/blog/resummarize" method="post" class='form-inline'>
-                <button class="w3-button w3-green w3-left">Resummarize all posts</button>
+                <button class="w3-button w3-teal w3-left">Resummarize all posts</button>
             </form>
             <form action="/signout" method='post'>
                 <button class="w3-button w3-black w3-right" type="submit">Logout</button>
@@ -27,17 +27,15 @@
 
     <!-- First Photo Grid-->
     <div th:if="${drafts.totalElements}" class="w3-col l12 s12">
-        <div class="w3-section w3-margin">
+        <div class="w3-panel">
             <h2>Drafts</h2>
             <ul class="w3-ul w3-card-4">
                 <li th:each="post : ${drafts}" layout:fragment="post-row" class="w3-padding-16">
-                    <!--<span class="w3-button w3-white w3-xlarge w3-right" layout:replace="admin/_dashboard_actions :: dashboard-actions">×</span>-->
                     <span class="w3-dropdown-hover w3-white w3-right" layout:replace="admin/_dashboard_actions :: dashboard-actions">×</span>
                     <img th:src="${post.author.avatarUrl}" class="w3-left w3-circle w3-margin-right" style="width:50px">
+                    <span class="w3-right w3-xlarge w3-margin-right"><b th:text="${post.title}">This week in Spring</b></span>
                     <span class="w3-large" th:text="${post.author.name}">Jane</span><br>
                     <span th:text="${post.formattedPublishDate}">Accountant</span>
-
-                    <span class="w3-center" th:text="${post.title}">This week in Spring</span>
                 </li>
             </ul>
         </div>
@@ -45,7 +43,7 @@
 
     <!-- Second Photo Grid-->
     <div th:if="${scheduled.totalElements}" class="w3-col l12 s12">
-        <div class="w3-section w3-margin">
+        <div class="w3-panel">
             <h2>Scheduled</h2>
             <ul class="w3-ul w3-card-4">
                 <li th:each="post : ${scheduled}" layout:include="admin/index::post-row" class="w3-padding-16"></li>
@@ -55,7 +53,7 @@
 
     <!-- Third Photo Grid-->
     <div th:if="${posts.totalElements}" class="w3-col l12 s12">
-        <div class="w3-section w3-margin">
+        <div class="w3-panel">
             <h2>Published</h2>
             <ul class="w3-ul w3-card-4">
                 <li th:each="post : ${posts}" layout:include="admin/index::post-row" class="w3-padding-16"></li>

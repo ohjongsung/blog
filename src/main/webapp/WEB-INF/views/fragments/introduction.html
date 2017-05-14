@@ -9,16 +9,35 @@
 </head>
 <body>
 <!-- Introduction menu -->
-<div class="w3-col l4" layout:fragment="introduction">
+<div class="w3-col l3" layout:fragment="introduction">
     <!-- About Card -->
-    <div class="w3-card-2 w3-margin w3-margin-top">
+    <div class="w3-panel">
         <img src="/resources/images/profile_image.jpg" style="width:100%">
-        <div class="w3-container w3-white">
-            <h5><b>Ohjongsung</b></h5>
-            <p>이래저래 얻게 되는 개발 경험을 블로그에 잘 정리해서 완전히 내 것으로 만들고 이를 통해 성장하고 싶은 개발자 </p>
+        <div class="w3-container w3-margin-top w3-xlarge">
+            <a href="https://github.com/ohjongsung/" target="_blank"><i class="fa fa-github w3-hover-opacity" aria-hidden="true"></i></a>
         </div>
     </div>
     <hr>
+    <div class="w3-panel">
+       <!-- <ul class="w3-ul">
+            <li th:class="${@uih.blogClass(activeCategory?:'','All Posts')}">
+                <div class="icon blog-icon all-posts"></div>
+                <a th:href="@{/blog}">All Posts</a>
+                <a th:href="@{/blog.atom}" class="pull-right"><i class="icon-rss"></i></a>
+            </li>
+            <li th:each="category : ${categories}" th:class="${@uih.blogClass(activeCategory?:'',category.displayName)}">
+                <div th:class="${'icon blog-icon '+ category.displayName.toLowerCase().replace(' ','-')}"></div>
+                <a th:href="@{'/blog/category/'+${category.urlSlug}}" th:text="${category.displayName}">Engineering</a>
+                <a th:href="@{'/blog/category/'+${category.urlSlug}}+'.atom'" class="pull-right"><i class="icon-rss"></i></a>
+            </li>
+        </ul>-->
+        <ul class="w3-ul">
+            <li><a href="/">All Posts</a></li>
+            <li><a href="/">Introduction</a></li>
+            <li><a href="/">Concept</a></li>
+            <li><a href="/">Pratice</a></li>
+        </ul>
+    </div>
 
     <!-- Posts 추후 개발-->
     <!--<div class="w3-card-2 w3-margin">
