@@ -25,7 +25,6 @@ import java.util.List;
  * Created by ohjongsung on 2017-05-08.
  */
 @Controller
-@RequestMapping("/")
 public class BlogController {
     private final BlogService service;
     private final DateFactory dateFactory;
@@ -34,6 +33,18 @@ public class BlogController {
     public BlogController(BlogService service, DateFactory dateFactory) {
         this.service = service;
         this.dateFactory = dateFactory;
+    }
+
+    @RequestMapping(value = "/{year:\\d+}/{month:\\d+}/{day:\\d+}/{slug}", method = { GET, HEAD })
+    public String showPost(@PathVariable String year, @PathVariable String month, @PathVariable String day,
+                           @PathVariable String slug, Model model) {
+
+        String publicSlug = String.format("%s/%s/%s/%s", year, month, day, slug);
+        Post post = service.getPublishedPost(publicSlug);
+        model.addAttribute("post", PostView.of(post, dateFactory));
+        model.addAttribute("categories", PostCategory.values());
+        model.addAttribute("activeCategory", post.getCategory().getDisplayName());
+        return "blog/show";
     }
 
     @RequestMapping(value = "", method = { GET, HEAD })
@@ -49,6 +60,16 @@ public class BlogController {
         Pageable pageRequest = PageableFactory.forLists(page);
         Page<Post> result = service.getPublishedPosts(category, pageRequest);
         return renderListOfPosts(result, model, category.getDisplayName());
+    }
+
+    @RequestMapping(value = "/{year:\\d+}", method = { GET, HEAD })
+    public String listPublishedPostsForYear(@PathVariable int year,
+                                            @RequestParam(defaultValue = "1", value = "page") int page, Model model) {
+
+        Pageable pageRequest = PageableFactory.forLists(page);
+        Page<Post> result = service.getPublishedPostsByDate(year, pageRequest);
+        model.addAttribute("title", String.format("Archive for %d", year));
+        return renderListOfPosts(result, model, "All Posts");
     }
 
     private String renderListOfPosts(Page<Post> page, Model model, String activeCategory) {
