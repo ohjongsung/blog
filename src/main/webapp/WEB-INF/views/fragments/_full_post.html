@@ -15,7 +15,7 @@
       </div>
       <div class="w3-container">
         <h5><span class="w3-tag w3-teal w3-left w3-margin" th:text="${category.displayName}">Engineering</span></h5>
-        <h5><span class="w3-tag w3-teal w3-left w3-margin" th:text="${post.author.username}">Author</span></h5>
+        <h5><span class="w3-tag w3-teal w3-left w3-margin" th:text="${post.author.name}">Author</span></h5>
         <h5><time class='w3-tag w3-teal w3-left w3-margin' pubdate th:datetime="${post.publishAt}" th:text='${post.formattedPublishDate}'>June 18, 2013</time></h5>
       </div>
       <div class="w3-container" th:utext="*{renderedContent}">
