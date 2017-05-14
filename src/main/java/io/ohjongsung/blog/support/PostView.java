@@ -16,7 +16,7 @@ import org.springframework.data.domain.PageRequest;
  * Created by ohjongsung on 2017-05-09. 뷰단에서 블로그 글을 그리기 위한 VO
  */
 public class PostView {
-    private final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMM dd, yyyy");
+    private final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy년 MM월 dd일");
 
     private final Post post;
     private final DateFactory dateFactory;
