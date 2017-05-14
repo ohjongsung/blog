@@ -44,7 +44,7 @@ public class BlogController {
         model.addAttribute("post", PostView.of(post, dateFactory));
         model.addAttribute("categories", PostCategory.values());
         model.addAttribute("activeCategory", post.getCategory().getDisplayName());
-        return "blog/show";
+        return "show";
     }
 
     @RequestMapping(value = "", method = { GET, HEAD })
