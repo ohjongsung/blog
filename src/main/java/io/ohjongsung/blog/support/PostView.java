@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import io.ohjongsung.blog.author.entity.AuthorProfile;
+import io.ohjongsung.blog.author.entity.MemberProfile;
 import io.ohjongsung.blog.entity.Post;
 import io.ohjongsung.support.DateFactory;
 import org.springframework.data.domain.Page;
@@ -45,9 +45,9 @@ public class PostView {
     public String getPath() {
         String path;
         if (post.isLiveOn(dateFactory.now())) {
-            path = "/blog/" + post.getPublicSlug();
+            path = "/" + post.getPublicSlug();
         } else {
-            path = "/admin/blog/" + post.getAdminSlug();
+            path = "/admin/" + post.getAdminSlug();
         }
         return path;
     }
@@ -72,7 +72,7 @@ public class PostView {
         return post.isBroadcast();
     }
 
-    public AuthorProfile getAuthor() {
+    public MemberProfile getAuthor() {
         return post.getAuthor();
     }
 
@@ -105,6 +105,6 @@ public class PostView {
     }
 
     public String getUpdatePath() {
-        return "/admin/blog/" + post.getAdminSlug();
+        return "/admin/" + post.getAdminSlug();
     }
 }
