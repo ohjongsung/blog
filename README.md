@@ -1,7 +1,7 @@
 ## blog.ohjongsung.io
 
-#### 마지막 빌드 [![Build Status](https://travis-ci.org/ohjongsung/blog.svg?branch=master)](https://travis-ci.org/ohjongsung/blog)
-#### 코드 커버리지 [![codecov](https://codecov.io/gh/ohjongsung/blog/branch/master/graph/badge.svg)](https://codecov.io/gh/ohjongsung/blog)
+[![Build Status](https://travis-ci.org/ohjongsung/blog.svg?branch=master)](https://travis-ci.org/ohjongsung/blog)
+[![codecov](https://codecov.io/gh/ohjongsung/blog/branch/master/graph/badge.svg)](https://codecov.io/gh/ohjongsung/blog)
 
 ### Sagan: the spring.io site and reference application
 
