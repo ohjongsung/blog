@@ -1,7 +1,8 @@
-## blog.ohjongsung.io
-
 [![Build Status](https://travis-ci.org/ohjongsung/blog.svg?branch=master)](https://travis-ci.org/ohjongsung/blog)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ae27a14bbbc84cc38b45d3e4ec0ab86b)](https://www.codacy.com/app/ohjongsung/blog?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ohjongsung/blog&amp;utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/ohjongsung/blog/branch/master/graph/badge.svg)](https://codecov.io/gh/ohjongsung/blog)
+
+## blog.ohjongsung.io
 
 ### Sagan: the spring.io site and reference application
 
