@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'idea'
+apply plugin: 'jacoco'
 
 archivesBaseName = 'io.ohjongsung.blog'
 group 'io.ohjongsung'
@@ -134,4 +135,11 @@ task initProject {
 
 war {
     archiveName = "${archivesBaseName}.${extension}"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
 }
