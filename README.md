@@ -1,5 +1,7 @@
 ## blog.ohjongsung.io
 
+#### 마지막 빌드 [![Build Status](https://travis-ci.org/ohjongsung/blog.svg?branch=master)](https://travis-ci.org/ohjongsung/blog)
+
 ### Sagan: the spring.io site and reference application
 
 스프링 개발자들은 내가 과연 스프링을 잘 활용하고 있을까? 이게 과연 최선의 웹 개발 구조일까? 하는 의문을 가지고 있는데, 
