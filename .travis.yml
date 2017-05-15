@@ -5,7 +5,8 @@ sudo: false
 
 before_install:
  - chmod +x gradlew
-
+script:
+  - ./gradlew test jacocoTestReport
 after_success:
     - bash <(curl -s https://codecov.io/bash)
 before_cache:
