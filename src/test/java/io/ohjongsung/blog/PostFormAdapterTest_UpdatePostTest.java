@@ -113,7 +113,7 @@ public class PostFormAdapterTest_UpdatePostTest {
     }
 
     @Test
-    public void updatingABlogPost_doesNotChangeItsCreatedDateByDefault() throws Exception {
+    public void updatingABlogPostDoesNotChangeItsCreatedDateByDefault() throws Exception {
         Date originalDate = DateTestUtils.getDate("2017-05-01 07:00");
         Post post = PostBuilder.post().createdAt(originalDate).build();
         postFormAdapter.updatePostFromPostForm(post, postForm);
@@ -121,7 +121,7 @@ public class PostFormAdapterTest_UpdatePostTest {
     }
 
     @Test
-    public void updatingABlogPost_usesTheCreatedDateFromThePostFormIfPresent() throws Exception {
+    public void updatingABlogPostUsesTheCreatedDateFromThePostFormIfPresent() throws Exception {
         Date originalDate = DateTestUtils.getDate("2017-05-01 07:00");
         Post post = PostBuilder.post().createdAt(originalDate).build();
 
