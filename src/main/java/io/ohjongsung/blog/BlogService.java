@@ -1,12 +1,9 @@
 package io.ohjongsung.blog;
 
-import io.ohjongsung.blog.author.entity.MemberProfile;
-import io.ohjongsung.blog.entity.Post;
-import io.ohjongsung.blog.repository.PostRepository;
-import io.ohjongsung.blog.support.PostCategory;
-import io.ohjongsung.blog.support.PostMovedException;
-import io.ohjongsung.blog.support.PostNotFoundException;
-import io.ohjongsung.support.DateFactory;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +12,20 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import io.ohjongsung.blog.author.entity.MemberProfile;
+import io.ohjongsung.blog.entity.Post;
+import io.ohjongsung.blog.repository.PostRepository;
+import io.ohjongsung.blog.support.PostCategory;
+import io.ohjongsung.blog.support.PostMovedException;
+import io.ohjongsung.blog.support.PostNotFoundException;
+import io.ohjongsung.support.DateFactory;
 
 /**
  * Created by ohjongsung on 2017-05-07. 블로그 서비스
  */
 @Service
 public class BlogService {
-
-    private static final Logger logger = LoggerFactory.getLogger(BlogService.class);
 
     private final PostFormAdapter postFormAdapter;
     private final PostRepository postRepository;
