@@ -24,7 +24,8 @@ import java.util.Properties;
 @Profile(BlogProfiles.DEVELOPMENT)
 public class DevelopmentPersistenceConfig {
 
-    @Autowired DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {

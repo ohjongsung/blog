@@ -44,7 +44,7 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    ITemplateResolver templateResolver() {
+    public ITemplateResolver templateResolver() {
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".html");
@@ -80,7 +80,7 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
      * Handles favicon.ico requests assuring no <code>404 Not Found</code> error is returned.
      */
     @Controller
-    static class FaviconController {
+    public static class FaviconController {
         @RequestMapping("favicon.ico")
         String favicon() {
             return "forward:/resources/images/favicon.ico";

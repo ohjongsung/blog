@@ -4,8 +4,8 @@ package io.ohjongsung.blog.author.support;
  * Created by ohjongsung on 2017-05-07. author profile
  */
 public class Link {
-    String href;
-    String text;
+    private String href;
+    private String text;
 
     public Link(String href, String text) {
         this.href = href;

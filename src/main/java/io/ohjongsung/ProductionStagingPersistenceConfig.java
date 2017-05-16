@@ -24,7 +24,8 @@ import java.util.Properties;
 @Profile({BlogProfiles.STAGING, BlogProfiles.PRODUCTION})
 public class ProductionStagingPersistenceConfig {
 
-    @Autowired DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
     @Bean
     @Profile({BlogProfiles.STAGING, BlogProfiles.PRODUCTION})

@@ -54,7 +54,7 @@ import io.ohjongsung.blog.author.entity.MemberProfile;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    static final String SIGNIN_SUCCESS_PATH = "/signin/success";
+    protected static final String SIGNIN_SUCCESS_PATH = "/signin/success";
 
     @Configuration
     @Order(Ordered.LOWEST_PRECEDENCE - 90)

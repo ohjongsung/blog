@@ -13,7 +13,7 @@ public abstract class DatabaseConfig {
     protected static final Logger logger = LoggerFactory.getLogger(DatabaseConfig.class);
 
     @Bean
-    abstract DataSource dataSource();
+    protected abstract DataSource dataSource();
 
     protected void configureDataSource(org.apache.tomcat.jdbc.pool.DataSource dataSource) {
         dataSource.setMaxActive(20);
