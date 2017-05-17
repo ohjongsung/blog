@@ -12,10 +12,10 @@
     <div class="w3-col l9 s12">
         <div class="w3-panel w3-border-bottom w3-light-grey" th:each="post : ${posts}">
             <div class="w3-container">
-                <h3 th:text="${post.title}"><b>TITLE HEADING</b></h3>
-                <span th:text="${post.category}" class="w3-opacity w3-margin-right">Title description</span>
-                <span th:text="${post.author.name}" class="w3-opacity w3-margin-right">author</span>
-                <span pubdate th:datetime="${post.publishAt}" th:text='${post.formattedPublishDate}' class="w3-opacity">April 7, 2014</span>
+                <h1 th:text="${post.title}"><b>TITLE HEADING</b></h1>
+                <span class="w3-tag w3-opacity">Category</span><span th:text="${post.category}" class="w3-tag w3-green w3-margin-right">Introduction</span>
+                <span class="w3-tag w3-opacity">Author</span><span th:text="${post.author.name}" class="w3-tag w3-green w3-margin-right">ohjongsung</span>
+                <span class="w3-tag w3-opacity">Publish At</span><span th:datetime="${post.publishAt}" th:text='${post.formattedPublishDate}' class="w3-tag w3-green w3-margin-right">April 7, 201</span>
             </div>
             <div class="w3-container">
                 <p th:utext="${post.renderedSummary}">Mauris neque quam, fermentum ut nisl vitae, convallis maximus
