@@ -1,19 +1,16 @@
 package io.ohjongsung.blog.author;
 
-import io.ohjongsung.blog.author.entity.MemberProfile;
-import io.ohjongsung.blog.author.repository.TeamRepository;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import io.ohjongsung.blog.author.entity.MemberProfile;
+import io.ohjongsung.blog.author.repository.TeamRepository;
 
 /**
  * Created by ohjongsung on 2017-05-13.
  */
 @Service
 public class TeamService {
-
-    private static Log logger = LogFactory.getLog(TeamService.class);
 
     private final TeamRepository teamRepository;
 
