@@ -4,6 +4,31 @@
       data-form-widgets>
 <head>
     <title th:inline="text">Edit &middot; [[${post.title}]]</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/resources/js/jquery.ui.widget.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/jquery.iframe-transport.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/jquery.fileupload.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#fileupload').fileupload({
+                url: '/admin/uploads',
+                dataType: 'json',
+                singleFileUploads: true,
+                done: function (e, data) {
+                    $.each(data.result, function (index, file) {
+                        $('<p/>').text(file.fileName).appendTo('#files');
+                    });
+                },
+                progressall: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#progress .bar').css(
+                        'width',
+                        progress + '%'
+                    );
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 <section layout:fragment="content">
