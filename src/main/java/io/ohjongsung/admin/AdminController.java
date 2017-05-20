@@ -1,38 +1,44 @@
 package io.ohjongsung.admin;
 
-import java.security.Principal;
-import java.util.Collections;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-import io.ohjongsung.blog.PostForm;
-import io.ohjongsung.blog.author.entity.MemberProfile;
-import io.ohjongsung.blog.entity.Post;
-import io.ohjongsung.blog.support.PostCategory;
-import io.ohjongsung.blog.support.PostFormat;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import io.ohjongsung.blog.BlogService;
+import io.ohjongsung.blog.PostForm;
+import io.ohjongsung.blog.author.entity.MemberProfile;
 import io.ohjongsung.blog.author.repository.TeamRepository;
+import io.ohjongsung.blog.entity.Post;
+import io.ohjongsung.blog.support.PostCategory;
+import io.ohjongsung.blog.support.PostFormat;
 import io.ohjongsung.blog.support.PostView;
 import io.ohjongsung.support.DateFactory;
 import io.ohjongsung.support.nav.PageableFactory;
 import io.ohjongsung.support.nav.PaginationInfo;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.transaction.Transactional;
-import javax.validation.Valid;
-
-import static org.springframework.web.bind.annotation.RequestMethod.*;
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * Created by ohjongsung on 2017-05-10.
@@ -44,6 +50,11 @@ public class AdminController {
     private BlogService service;
     private TeamRepository teamRepository;
     private DateFactory dateFactory;
+
+    @Value("${file.upload.folder}")
+    private String base;
+
+    private static final SimpleDateFormat SUB_PATH_DATE_FORMAT = new SimpleDateFormat("/yyyy/MM/dd/");
 
     @Autowired
     public AdminController(BlogService service, TeamRepository teamRepository, DateFactory dateFactory) {
@@ -145,6 +156,48 @@ public class AdminController {
         Post post = service.getPost(postId);
         service.deletePost(post);
         return "redirect:/admin";
+    }
+
+    @RequestMapping(value = "/uploads", method = RequestMethod.POST)
+    public @ResponseBody LinkedList<FileMeta> upload(MultipartHttpServletRequest request,
+                                                     HttpServletResponse response) {
+        LinkedList<FileMeta> files = new LinkedList<FileMeta>();
+        FileMeta fileMeta = null;
+
+        Iterator<String> itr = request.getFileNames();
+        MultipartFile mpf = null;
+
+        while (itr.hasNext()) {
+            mpf = request.getFile(itr.next());
+
+            if (files.size() >= 10) {
+                files.pop();
+            }
+
+            fileMeta = new FileMeta();
+            fileMeta.setFileName(mpf.getOriginalFilename());
+            fileMeta.setFileSize(mpf.getSize()/1024+" Kb");
+            fileMeta.setFileType(mpf.getContentType());
+            String subPh = SUB_PATH_DATE_FORMAT.format(dateFactory.now());
+            String filePh = base + subPh;
+            fileMeta.setFileUrl(filePh + mpf.getOriginalFilename());
+
+            try {
+                File imgFile = new File(filePh);
+                if (!imgFile.exists()) {
+                    imgFile.mkdirs();
+                }
+                fileMeta.setBytes(mpf.getBytes());
+                FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(fileMeta.getFileUrl()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            files.add(fileMeta);
+
+        }
+
+        return files;
     }
 
     @RequestMapping(value = "resummarize", method = POST)
