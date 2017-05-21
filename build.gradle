@@ -3,7 +3,7 @@ apply plugin: 'war'
 apply plugin: 'idea'
 apply plugin: 'jacoco'
 
-archivesBaseName = 'io.ohjongsung.blog'
+archivesBaseName = 'blog'
 group 'io.ohjongsung'
 version '1.0-SNAPSHOT'
 
