@@ -22,7 +22,6 @@ import org.springframework.util.StringUtils;
  * Created by ohjongsung on 2017-05-13. GutHub API 사용을 위한 인증 컨피그
  */
 @Configuration
-@PropertySource("classpath:environment.properties")
 public class GitHubConfig {
 
     public static final Logger logger = LoggerFactory.getLogger(GitHubConfig.class);
@@ -35,11 +34,6 @@ public class GitHubConfig {
 
     @Value("${github.access.token}")
     private String githubAccessToken;
-
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
 
     @Bean
     public GitHubConnectionFactory gitHubConnectionFactory() {

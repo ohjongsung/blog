@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
  * Created by ohjongsung on 2017-05-06. spring-core-config.xml
  */
 @Configuration
-@Import({ DevelopmentDatabaseConfig.class, StagingDatabaseConfig.class, ProductionDatabaseConfig.class,
+@Import({ PropertySourcesConfig.class, DevelopmentDatabaseConfig.class, StagingDatabaseConfig.class, ProductionDatabaseConfig.class,
         DevelopmentPersistenceConfig.class, ProductionStagingPersistenceConfig.class, GitHubConfig.class, SecurityConfig.class })
 @ComponentScan(basePackages = { "io.ohjongsung" },
                excludeFilters = @ComponentScan.Filter(value = { Controller.class, Configuration.class },
