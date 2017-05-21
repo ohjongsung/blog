@@ -133,6 +133,10 @@ dependencies {
 task initProject {
     file(webAppDirName + "/WEB-INF/views").mkdirs()
     file(webAppDirName + "/META-INF").mkdir()
+    file(webAppDirName + "/resources/css").mkdir()
+    file(webAppDirName + "/resources/images").mkdir()
+    file(webAppDirName + "/resources/js").mkdir()
+    file(webAppDirName + "/resources/upload").mkdir()
 }
 
 war {
