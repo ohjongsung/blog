@@ -13,9 +13,9 @@
         <div class="w3-panel w3-border-bottom w3-light-grey" th:each="post : ${posts}">
             <div class="w3-container">
                 <h2><b th:text="${post.title}">TITLE HEADING</b></h2>
-                <span class="w3-tag w3-opacity">Category</span><span th:text="${post.category}" class="w3-tag w3-green w3-margin-right">Introduction</span>
-                <span class="w3-tag w3-opacity">Author</span><span th:text="${post.author.name}" class="w3-tag w3-green w3-margin-right">ohjongsung</span>
-                <span class="w3-tag w3-opacity">Publish At</span><span th:datetime="${post.publishAt}" th:text='${post.formattedPublishDate}' class="w3-tag w3-green w3-margin-right">April 7, 201</span>
+                <p class="w3-left"><span class="w3-tag w3-opacity">Category</span><span th:text="${post.category}" class="w3-tag w3-green w3-margin-right">Introduction</span></p>
+                <p class="w3-left"><span class="w3-tag w3-opacity">Author</span><span th:text="${post.author.name}" class="w3-tag w3-green w3-margin-right">ohjongsung</span></p>
+                <p class="w3-left"><span class="w3-tag w3-opacity">Publish At</span><span th:datetime="${post.publishAt}" th:text='${post.formattedPublishDate}' class="w3-tag w3-green w3-margin-right">April 7, 201</span></p>
             </div>
             <div class="w3-container">
                 <p th:utext="${post.renderedSummary}">Mauris neque quam, fermentum ut nisl vitae, convallis maximus
