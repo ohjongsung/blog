@@ -2,10 +2,8 @@ package io.ohjongsung;
 
 import io.ohjongsung.blog.support.PostCategoryFormatter;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.*;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +14,15 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.util.UrlPathHelper;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by ohjongsung on 2017-05-06. spring-servlet-config.xml
@@ -37,11 +38,13 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
                 .addResourceLocations("/resources/");
     }
 
-    @Override public void addViewControllers(ViewControllerRegistry registry) {
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/signin").setViewName("pages/signin");
     }
 
-    @Override public void addFormatters(FormatterRegistry registry) {
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new PostCategoryFormatter());
     }
 
@@ -86,7 +89,8 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
     }
 
     /**
-     * Handles favicon.ico requests assuring no <code>404 Not Found</code> error is returned.
+     * Handles favicon.ico requests assuring no <code>404 Not Found</code> error is
+     * returned.
      */
     @Controller
     public static class FaviconController {
@@ -94,5 +98,23 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
         String favicon() {
             return "forward:/resources/images/favicon.ico";
         }
+    }
+
+    @Bean(name = { "uih", "viewRenderingHelper" })
+    @Scope("request")
+    public ViewRenderingHelper viewRenderingHelper() {
+        return new ViewRenderingHelper();
+    }
+
+    private static class ViewRenderingHelper {
+
+        public String blogClass(String active, String current) {
+            if (active.equals(current)) {
+                return "w3-leftbar w3-border-green";
+            } else {
+                return "w3-leftbar";
+            }
+        }
+
     }
 }
