@@ -52,9 +52,9 @@ public class AdminController {
     private DateFactory dateFactory;
 
     @Value("${file.upload.folder}")
-    private String base;
+    private String uploadPh;
 
-    private static final SimpleDateFormat SUB_PATH_DATE_FORMAT = new SimpleDateFormat("/yyyy/MM/dd/");
+    private static final SimpleDateFormat SUB_PATH_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd/");
 
     @Autowired
     public AdminController(BlogService service, TeamRepository teamRepository, DateFactory dateFactory) {
@@ -178,17 +178,16 @@ public class AdminController {
             fileMeta.setFileName(mpf.getOriginalFilename());
             fileMeta.setFileSize(mpf.getSize()/1024+" Kb");
             fileMeta.setFileType(mpf.getContentType());
-            String subPh = SUB_PATH_DATE_FORMAT.format(dateFactory.now());
-            String filePh = base + subPh;
-            fileMeta.setFileUrl(filePh + mpf.getOriginalFilename());
+            String realPathtoUploads =  request.getServletContext().getRealPath(uploadPh);
+            fileMeta.setFileUrl(uploadPh + mpf.getOriginalFilename());
 
             try {
-                File imgFile = new File(filePh);
+                File imgFile = new File(realPathtoUploads);
                 if (!imgFile.exists()) {
                     imgFile.mkdirs();
                 }
                 fileMeta.setBytes(mpf.getBytes());
-                FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(fileMeta.getFileUrl()));
+                FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(realPathtoUploads +mpf.getOriginalFilename()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
