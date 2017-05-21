@@ -10,7 +10,8 @@ import org.springframework.util.StringUtils;
 
 /**
  * Created by ohjongsung on 2017-05-07. 제목 HTML 전환 커스텀을 위한 확장 클래스이다. a 태그를 다음과 같이 만든다.
- * <h2 class="title"><a href="#this-is-a-title" class="anchor" name="this-is-a-title"></a>This is a title</h2>
+ * <h2 class="title"><a href="#this-is-a-title" class="anchor" name=
+ * "this-is-a-title"></a>This is a title</h2>
  */
 public class MarkdownToHtmlSerializer extends ToHtmlSerializer {
     public MarkdownToHtmlSerializer(final LinkRenderer linkRenderer,
@@ -27,6 +28,21 @@ public class MarkdownToHtmlSerializer extends ToHtmlSerializer {
         printLink(anchorLink);
         visitChildren(node);
         printer.print('<').print('/').print(tag).print('>');
+    }
+
+    @Override
+    protected void printImageTag(LinkRenderer.Rendering rendering) {
+        printer.print("<img");
+        printAttribute("src", rendering.href);
+        printAttribute("class", "w3-image");
+        // shouldn't include the alt attribute if its empty
+        if (!rendering.text.equals("")) {
+            printAttribute("alt", rendering.text);
+        }
+        for (LinkRenderer.Attribute attr : rendering.attributes) {
+            printAttribute(attr.name, attr.value);
+        }
+        printer.print(" />");
     }
 
     private LinkRenderer.Rendering createAnchorLink(String title) {
