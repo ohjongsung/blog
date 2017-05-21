@@ -15,12 +15,14 @@
                 <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Incorrect title</p>
             </div>
         </div>
-        <input id="fileupload" class="fileinput-button" type="file" name="files[]" multiple>
-        <div id="progress">
-            <div class="bar" style="width: 0%;"></div>
-        </div>
-        <div id="files">
-
+        <div class="w3-section">
+            <label for="fileupload">Select images..</label>
+            <input id="fileupload" class="w3-input" type="file" name="files[]" multiple>
+            <div id="progress" class="w3-light-grey">
+                <div id="bar" class="w3-container w3-green" style="width:0%"></div>
+            </div>
+            <div id="files">
+            </div>
         </div>
         <div class="w3-section">
             <label for="content">Content</label>

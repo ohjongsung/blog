@@ -16,12 +16,12 @@
                 singleFileUploads: true,
                 done: function (e, data) {
                     $.each(data.result, function (index, file) {
-                        $('<p/>').text(file.fileName).appendTo('#files');
+                        $('<p/>').text(file.fileUrl).appendTo('#files');
                     });
                 },
                 progressall: function (e, data) {
                     var progress = parseInt(data.loaded / data.total * 100, 10);
-                    $('#progress .bar').css(
+                    $('#progress #bar').css(
                         'width',
                         progress + '%'
                     );
