@@ -38,7 +38,7 @@ public class PostFormAdapterTest_CreatePostTest {
     private Post post;
     private String title = "Title";
     private String content = "Rendered HTML\n\nfrom Markdown";
-    private PostCategory category = PostCategory.CONCEPT;
+    private PostCategory category = PostCategory.INTRODUCTION;
     private Date publishAt = DateTestUtils.getDate("2017-05-07 12:00");
     private boolean broadcast = true;
     private boolean draft = false;

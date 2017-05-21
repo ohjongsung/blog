@@ -29,7 +29,7 @@ public class PostBuilder {
         title = "My Post";
         author = new MemberProfile();
         author.setUsername("test");
-        category = PostCategory.CONCEPT;
+        category = PostCategory.INTRODUCTION;
         format = PostFormat.MARKDOWN;
         rawContent = "post body";
         renderedContent = "post body";
