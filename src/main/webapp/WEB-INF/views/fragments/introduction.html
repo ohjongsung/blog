@@ -18,27 +18,27 @@
         </div>
     </div>
     <hr>
-    <div class="w3-panel">
+    <!-- 카테고리 추후 개발-->
+<!--    <div class="w3-panel">
         <p class="w3-leftbar w3-border-green"><a class="w3-margin-left" href="/">All Posts</a></p>
         <p class="w3-leftbar"><a class="w3-margin-left" th:href="@{/category/introduction}">Introduction</a></p>
         <p class="w3-leftbar"><a class="w3-margin-left" href="/category/concept">Concept</a></p>
         <p class="w3-leftbar"><a class="w3-margin-left" href="/category/practice">Practice</a></p>
         <p class="w3-leftbar"><a class="w3-margin-left" href="/category/tip">Tip</a></p>
         <p class="w3-leftbar"><a class="w3-margin-left" href="/category/review">Review</a></p>
-       <!-- <ul class="w3-ul">
-            <li th:class="${@uih.blogClass(activeCategory?:'','All Posts')}">
-                <div class="icon blog-icon all-posts"></div>
-                <a th:href="@{/blog}">All Posts</a>
-                <a th:href="@{/blog.atom}" class="pull-right"><i class="icon-rss"></i></a>
-            </li>
-            <li th:each="category : ${categories}" th:class="${@uih.blogClass(activeCategory?:'',category.displayName)}">
-                <div th:class="${'icon blog-icon '+ category.displayName.toLowerCase().replace(' ','-')}"></div>
-                <a th:href="@{'/blog/category/'+${category.urlSlug}}" th:text="${category.displayName}">Engineering</a>
-                <a th:href="@{'/blog/category/'+${category.urlSlug}}+'.atom'" class="pull-right"><i class="icon-rss"></i></a>
-            </li>
-        </ul>-->
-    </div>
-
+    </div>-->
+    <!-- <ul class="w3-ul">
+         <li th:class="${@uih.blogClass(activeCategory?:'','All Posts')}">
+             <div class="icon blog-icon all-posts"></div>
+             <a th:href="@{/blog}">All Posts</a>
+             <a th:href="@{/blog.atom}" class="pull-right"><i class="icon-rss"></i></a>
+         </li>
+         <li th:each="category : ${categories}" th:class="${@uih.blogClass(activeCategory?:'',category.displayName)}">
+             <div th:class="${'icon blog-icon '+ category.displayName.toLowerCase().replace(' ','-')}"></div>
+             <a th:href="@{'/blog/category/'+${category.urlSlug}}" th:text="${category.displayName}">Engineering</a>
+             <a th:href="@{'/blog/category/'+${category.urlSlug}}+'.atom'" class="pull-right"><i class="icon-rss"></i></a>
+         </li>
+     </ul>-->
     <!-- Posts 추후 개발-->
     <!--<div class="w3-card-2 w3-margin">
         <div class="w3-container w3-padding">
