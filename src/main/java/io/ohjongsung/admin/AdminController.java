@@ -3,6 +3,7 @@ package io.ohjongsung.admin;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import java.io.File;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -53,6 +56,7 @@ public class AdminController {
 
     @Value("${file.upload.folder}")
     private String uploadPh;
+    private static final String UPLOAD_PATH = "/resources/upload/";
 
     private static final SimpleDateFormat SUB_PATH_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd/");
 
@@ -178,16 +182,13 @@ public class AdminController {
             fileMeta.setFileName(mpf.getOriginalFilename());
             fileMeta.setFileSize(mpf.getSize()/1024+" Kb");
             fileMeta.setFileType(mpf.getContentType());
-            String realPathtoUploads =  request.getServletContext().getRealPath(uploadPh);
-            fileMeta.setFileUrl(uploadPh + mpf.getOriginalFilename());
+            //아래의 코드는 톰캣 내부 webapps resources 폴더 경로를 가져온다. 이는 재배포시 업로드 파일이 모두 날라가게 한다.
+            //String realPathtoUploads =  request.getServletContext().getRealPath(uploadPh);
+            fileMeta.setFileUrl(UPLOAD_PATH + mpf.getOriginalFilename());
 
             try {
-                File imgFile = new File(realPathtoUploads);
-                if (!imgFile.exists()) {
-                    imgFile.mkdirs();
-                }
                 fileMeta.setBytes(mpf.getBytes());
-                FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(realPathtoUploads +mpf.getOriginalFilename()));
+                FileCopyUtils.copy(mpf.getBytes(), FileUtils.openOutputStream(new File(uploadPh +mpf.getOriginalFilename())));
             } catch (IOException e) {
                 e.printStackTrace();
             }
