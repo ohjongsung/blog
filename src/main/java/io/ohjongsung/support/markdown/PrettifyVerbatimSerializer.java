@@ -14,13 +14,14 @@ public class PrettifyVerbatimSerializer implements VerbatimSerializer {
 
     @Override
     public void serialize(final VerbatimNode node, final Printer printer) {
-        printer.println().print("<pre><code");
+        printer.println().print("<div class=\"w3-code\"><pre");
         String className = "prettyprint";
         if (!StringUtils.isEmpty(node.getType())) {
             className = className.concat(" " + node.getType());
         }
         printAttribute(printer, "class", className);
         printer.print(">");
+        printer.println().print("<code>");
         String text = node.getText();
         // print HTML breaks for all initial newlines
         while (text.charAt(0) == '\n') {
@@ -28,7 +29,7 @@ public class PrettifyVerbatimSerializer implements VerbatimSerializer {
             text = text.substring(1);
         }
         printer.printEncoded(text);
-        printer.print("</code></pre>");
+        printer.print("</code></pre></div>");
 
     }
 
