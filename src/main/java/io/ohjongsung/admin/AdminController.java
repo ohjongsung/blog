@@ -3,8 +3,6 @@ package io.ohjongsung.admin;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import java.io.File;
-
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
@@ -17,7 +15,6 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -27,7 +24,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -162,7 +162,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @RequestMapping(value = "/uploads", method = RequestMethod.POST)
+    @RequestMapping(value = "/uploads", method = POST)
     public @ResponseBody LinkedList<FileMeta> upload(MultipartHttpServletRequest request,
                                                      HttpServletResponse response) {
         LinkedList<FileMeta> files = new LinkedList<FileMeta>();

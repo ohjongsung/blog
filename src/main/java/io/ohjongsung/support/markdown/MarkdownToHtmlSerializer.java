@@ -36,7 +36,7 @@ public class MarkdownToHtmlSerializer extends ToHtmlSerializer {
         printAttribute("src", rendering.href);
         printAttribute("class", "w3-image");
         // shouldn't include the alt attribute if its empty
-        if (!rendering.text.equals("")) {
+        if (!"".equals(rendering.text)) {
             printAttribute("alt", rendering.text);
         }
         for (LinkRenderer.Attribute attr : rendering.attributes) {

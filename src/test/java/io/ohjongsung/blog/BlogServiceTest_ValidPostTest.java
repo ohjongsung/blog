@@ -27,7 +27,6 @@ import static org.mockito.Mockito.verify;
 public class BlogServiceTest_ValidPostTest {
 
     private static final String AUTHOR_USERNAME = "username";
-    private Post post;
     private PostForm postForm = new PostForm();
     private Date publishAt = DateTestUtils.getDate("2017-07-08 12:00");
     private Date now = DateTestUtils.getDate("2017-07-08 13:00");
@@ -41,8 +40,6 @@ public class BlogServiceTest_ValidPostTest {
     @Rule
     public ExpectedException expected = ExpectedException.none();
 
-    private BlogService service;
-
     @Before
     public void setUp() throws Exception {
         given(dateFactory.now()).willReturn(now);
@@ -53,10 +50,10 @@ public class BlogServiceTest_ValidPostTest {
             return post;
         });
 
-        post = PostBuilder.post().publishAt(publishAt).build();
+        Post post = PostBuilder.post().publishAt(publishAt).build();
         given(postFormAdapter.createPostFromPostForm(postForm, AUTHOR_USERNAME)).willReturn(post);
 
-        service = new BlogService(postRepository, postFormAdapter, dateFactory);
+        BlogService service = new BlogService(postRepository, postFormAdapter, dateFactory);
         service.addPost(postForm, AUTHOR_USERNAME);
     }
 

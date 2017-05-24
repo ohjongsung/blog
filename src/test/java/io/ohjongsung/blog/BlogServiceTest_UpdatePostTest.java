@@ -39,13 +39,12 @@ public class BlogServiceTest_UpdatePostTest {
     public ExpectedException expected = ExpectedException.none();
 
     private PostForm postForm;
-    private BlogService service;
 
     @Before
     public void setUp() throws Exception {
         given(dateFactory.now()).willReturn(now);
 
-        service = new BlogService(postRepository, postFormAdapter, dateFactory);
+        BlogService service = new BlogService(postRepository, postFormAdapter, dateFactory);
 
         post = PostBuilder.post().id(123L).publishAt(publishAt).build();
 

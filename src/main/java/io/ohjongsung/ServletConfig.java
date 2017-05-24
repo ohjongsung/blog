@@ -1,8 +1,5 @@
 package io.ohjongsung;
 
-import io.ohjongsung.blog.support.PostCategoryFormatter;
-import nz.net.ultraq.thymeleaf.LayoutDialect;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.stereotype.Controller;
@@ -14,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.util.UrlPathHelper;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
@@ -22,7 +18,8 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-import javax.servlet.http.HttpServletRequest;
+import io.ohjongsung.blog.support.PostCategoryFormatter;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 /**
  * Created by ohjongsung on 2017-05-06. spring-servlet-config.xml
@@ -95,7 +92,7 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
     @Controller
     public static class FaviconController {
         @RequestMapping("favicon.ico")
-        String favicon() {
+        public String favicon() {
             return "forward:/resources/images/favicon.ico";
         }
     }

@@ -15,7 +15,8 @@ import java.util.Map;
 public class PostCategoryFormatter implements Formatter<PostCategory> {
 
     private static Map<String, PostCategory> mapping = new HashMap<>();
-    {
+
+    public PostCategoryFormatter() {
         for (PostCategory category : PostCategory.values()) {
             mapping.put(category.getUrlSlug(), category);
             mapping.put(category.name(), category);
