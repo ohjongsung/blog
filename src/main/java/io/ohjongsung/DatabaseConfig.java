@@ -19,7 +19,5 @@ public abstract class DatabaseConfig {
         dataSource.setMaxActive(20);
         dataSource.setMaxIdle(8);
         dataSource.setMinIdle(8);
-        dataSource.setTestOnBorrow(false);
-        dataSource.setTestOnReturn(false);
     }
 }
