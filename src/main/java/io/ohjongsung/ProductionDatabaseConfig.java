@@ -21,6 +21,7 @@ public class ProductionDatabaseConfig extends DatabaseConfig {
         dataSource.setUsername("ohjongsung");
         dataSource.setPassword("!winners1");
         dataSource.setValidationQuery("SELECT 1");
+        dataSource.setTestWhileIdle(true);
         logger.debug("production dataSource");
         configureDataSource(dataSource);
         return dataSource;
