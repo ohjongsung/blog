@@ -23,7 +23,7 @@ public class PropertySourcesConfig {
             new ClassPathResource("production.properties"),
     };
 
-    @Profile("development")
+    @Profile(BlogProfiles.DEVELOPMENT)
     public static class DevConfig {
         @Bean
         public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
@@ -33,7 +33,7 @@ public class PropertySourcesConfig {
         }
     }
 
-    @Profile("staging")
+    @Profile(BlogProfiles.STAGING)
     public static class TestConfig {
         @Bean
         public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
@@ -43,7 +43,7 @@ public class PropertySourcesConfig {
         }
     }
 
-    @Profile("production")
+    @Profile(BlogProfiles.PRODUCTION)
     public static class ProdConfig {
         @Bean
         public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {

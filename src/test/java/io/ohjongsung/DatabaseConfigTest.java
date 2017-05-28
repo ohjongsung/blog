@@ -15,7 +15,7 @@ public class DatabaseConfigTest {
     @Test
     public void developmentDataSource() {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-        ctx.getEnvironment().setActiveProfiles("development");
+        ctx.getEnvironment().setActiveProfiles(BlogProfiles.DEVELOPMENT);
         ctx.register(DevelopmentDatabaseConfig.class, StagingDatabaseConfig.class, ProductionDatabaseConfig.class);
         ctx.refresh();
 
