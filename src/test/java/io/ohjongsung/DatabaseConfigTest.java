@@ -31,7 +31,7 @@ public class DatabaseConfigTest {
         ctx.refresh();
 
         org.apache.tomcat.jdbc.pool.DataSource dataSource = (org.apache.tomcat.jdbc.pool.DataSource)ctx.getBean("dataSource", DataSource.class);
-        assertEquals("jdbc:mariadb://13.124.4.250:3306/BLOG_STAGING", dataSource.getUrl());
+        assertEquals("jdbc:mariadb://13.124.111.73:3306/BLOG_STAGING", dataSource.getUrl());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class DatabaseConfigTest {
         ctx.refresh();
 
         org.apache.tomcat.jdbc.pool.DataSource dataSource = (org.apache.tomcat.jdbc.pool.DataSource)ctx.getBean("dataSource", DataSource.class);
-        assertEquals("jdbc:mariadb://13.124.4.250:3306/BLOG", dataSource.getUrl());
+        assertEquals("jdbc:mariadb://13.124.111.73:3306/BLOG", dataSource.getUrl());
     }
 
 }
