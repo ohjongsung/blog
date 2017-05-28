@@ -17,7 +17,7 @@ public class StagingDatabaseConfig extends DatabaseConfig {
         org.apache.tomcat.jdbc.pool.DataSource dataSource = new org.apache.tomcat.jdbc.pool.DataSource();
 
         dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
-        dataSource.setUrl("jdbc:mariadb://13.124.4.250:3306/BLOG_STAGING");
+        dataSource.setUrl("jdbc:mariadb://13.124.111.73:3306/BLOG_STAGING");
         dataSource.setUsername("ohjongsung");
         dataSource.setPassword("!winners1");
         dataSource.setValidationQuery("SELECT 1");
