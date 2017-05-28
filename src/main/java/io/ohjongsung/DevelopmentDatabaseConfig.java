@@ -1,17 +1,17 @@
 package io.ohjongsung;
 
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-
-import javax.sql.DataSource;
 
 /**
  * Created by ohjongsung on 2017-05-08.
  */
 @Configuration
 @Profile(BlogProfiles.DEVELOPMENT)
-public class DevelopmentDatabaseConfig extends DatabaseConfig {
+public class DevelopmentDatabaseConfig {
     @Bean
     public DataSource dataSource() {
         org.apache.tomcat.jdbc.pool.DataSource dataSource = new org.apache.tomcat.jdbc.pool.DataSource();
@@ -21,8 +21,9 @@ public class DevelopmentDatabaseConfig extends DatabaseConfig {
         dataSource.setUsername("sa");
         dataSource.setPassword("");
         dataSource.setValidationQuery("SELECT 1");
-        logger.debug("development dataSource");
-        configureDataSource(dataSource);
+        dataSource.setMaxActive(20);
+        dataSource.setMaxIdle(8);
+        dataSource.setMinIdle(8);
         return dataSource;
     }
 }

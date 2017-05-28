@@ -22,27 +22,4 @@ public class DatabaseConfigTest {
         org.apache.tomcat.jdbc.pool.DataSource dataSource = (org.apache.tomcat.jdbc.pool.DataSource)ctx.getBean("dataSource", DataSource.class);
         assertEquals("jdbc:h2:mem:blog", dataSource.getUrl());
     }
-
-    @Test
-    public void stagingDataSource() {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-        ctx.getEnvironment().setActiveProfiles("staging");
-        ctx.register(DevelopmentDatabaseConfig.class, StagingDatabaseConfig.class, ProductionDatabaseConfig.class);
-        ctx.refresh();
-
-        org.apache.tomcat.jdbc.pool.DataSource dataSource = (org.apache.tomcat.jdbc.pool.DataSource)ctx.getBean("dataSource", DataSource.class);
-        assertEquals("jdbc:mariadb://13.124.111.73:3306/BLOG_STAGING", dataSource.getUrl());
-    }
-
-    @Test
-    public void productionDataSource() {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-        ctx.getEnvironment().setActiveProfiles("production");
-        ctx.register(DevelopmentDatabaseConfig.class, StagingDatabaseConfig.class, ProductionDatabaseConfig.class);
-        ctx.refresh();
-
-        org.apache.tomcat.jdbc.pool.DataSource dataSource = (org.apache.tomcat.jdbc.pool.DataSource)ctx.getBean("dataSource", DataSource.class);
-        assertEquals("jdbc:mariadb://13.124.111.73:3306/BLOG", dataSource.getUrl());
-    }
-
 }
