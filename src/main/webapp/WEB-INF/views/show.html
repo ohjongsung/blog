@@ -5,20 +5,39 @@
       lang="ko" data-code-prettify>
 <head>
     <title th:inline="text">[[${post.title}]]</title>
+    <!-- default meta card -->
+    <meta name="author" content="ohjongsung">
+    <meta name="keyword" content="blog, development">
+    <meta name="description" content="ohjongsung's Dev Story">
     <!-- Twitter card -->
     <meta name="twitter:card" content="summary">
     <!--<meta name="twitter:site" content="@springcentral">-->
     <meta name="twitter:title" th:content="${post.title}">
     <meta name="twitter:description" th:content="${post.renderedSummary}">
     <!--<meta name="twitter:creator" th:if="${post.author.hasTwitterUsername()}" th:content="'@' + ${post.author.twitterUsername}">-->
-    <meta name="twitter:image:src" th:unless="${#strings.isEmpty(post.author.avatarUrl)}" th:content="${post.author.avatarUrl} + '?s=200'">
+    <meta name="twitter:image:src" content="/resources/images/header_image.jpg">
 
     <!-- http://opengraphprotocol.org/ -->
     <meta property="og:title" th:content="${post.title}">
-    <meta property="og:image" th:unless="${#strings.isEmpty(post.author.avatarUrl)}" th:content="${post.author.avatarUrl} + '?s=200'">
+    <meta property="og:image" content="/resources/images/header_image.jpg">
     <meta property="og:description" th:content="${post.renderedSummary}">
     <meta property="og:type" content="article">
     <meta property="og:article:published_time" th:content="${post.publishAt}">
+    <meta property="fb:locale" content="ko_KR">
+    <!-- Nate card -->
+    <meta name="nate:title" th:content="${post.title}">
+    <meta name="nate:description" th:content="${post.renderedSummary}">
+    <meta name="nate:image" content="/resources/images/header_image.jpg">
+    <script type="application/ld+json" th:inline="text">
+    {
+      "@context": "http://schema.org",
+      "@type": "article",
+      "headline": "[[${post.title}]]",
+      "author": "ohjongsung",
+      "image": "/resources/images/header_image.jpg",
+      "description": "[[${post.renderedSummary}]]"
+    }
+    </script>
 </head>
 <body>
 <section layout:fragment="content">

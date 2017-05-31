@@ -85,18 +85,6 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
         return multipartResolver;
     }
 
-    /**
-     * Handles favicon.ico requests assuring no <code>404 Not Found</code> error is
-     * returned.
-     */
-    @Controller
-    public static class FaviconController {
-        @RequestMapping("favicon.ico")
-        public String favicon() {
-            return "forward:/resources/images/favicon.ico";
-        }
-    }
-
     @Bean(name = { "uih", "viewRenderingHelper" })
     @Scope("request")
     public ViewRenderingHelper viewRenderingHelper() {
