@@ -30,9 +30,4 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
     @Override protected Filter[] getServletFilters() {
         return new Filter[] { new CharacterEncodingFilter("UTF-8", true), new HiddenHttpMethodFilter() };
     }
-
-    @Override public void onStartup(ServletContext servletContext) throws ServletException {
-        super.onStartup(servletContext);
-        servletContext.setInitParameter("spring.profiles.active", "production");
-    }
 }
