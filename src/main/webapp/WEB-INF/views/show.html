@@ -15,12 +15,13 @@
     <meta name="twitter:title" th:content="${post.title}">
     <meta name="twitter:description" th:content="${post.renderedSummary}">
     <!--<meta name="twitter:creator" th:if="${post.author.hasTwitterUsername()}" th:content="'@' + ${post.author.twitterUsername}">-->
-    <meta name="twitter:image:src" content="/resources/images/header_image.jpg">
+    <meta name="twitter:image" content="/resources/images/header_image.jpg">
 
     <!-- http://opengraphprotocol.org/ -->
     <meta property="og:title" th:content="${post.title}">
     <meta property="og:image" content="/resources/images/header_image.jpg">
     <meta property="og:description" th:content="${post.renderedSummary}">
+    <meta property="og:url" th:content="'https://ohjongsung.io/'+ ${post.publicSlug}">
     <meta property="og:type" content="article">
     <meta property="og:article:published_time" th:content="${post.publishAt}">
     <meta property="fb:locale" content="ko_KR">
@@ -30,9 +31,10 @@
     <meta name="nate:image" content="/resources/images/header_image.jpg">
     <script type="application/ld+json" th:inline="text">
     {
-      "@context": "http://schema.org",
-      "@type": "article",
+      "@context": "http://schema.org/",
+      "@type": "NewsArticle",
       "headline": "[[${post.title}]]",
+      "datePublished": "[[${post.publishAt}]]",
       "author": "ohjongsung",
       "image": "/resources/images/header_image.jpg",
       "description": "[[${post.renderedSummary}]]"
