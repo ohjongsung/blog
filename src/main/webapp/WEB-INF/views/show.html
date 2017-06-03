@@ -33,10 +33,22 @@
     {
       "@context": "http://schema.org/",
       "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://ohjongsung.io/[[${post.publicSlug}]]"
+      },
       "headline": "[[${post.title}]]",
       "datePublished": "[[${post.publishAt}]]",
-      "author": "ohjongsung",
-      "image": "/resources/images/header_image.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "ohjongsung"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "height": "",
+        "width": "",
+        "url": "https://ohjongsung.io/resources/images/header_image.jpg"
+      },
       "description": "[[${post.renderedSummary}]]"
     }
     </script>
