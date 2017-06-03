@@ -43,6 +43,26 @@
 <section layout:fragment="content">
     <div class="w3-col l10 m10 s12" th:object="${post}">
         <div id="content" class="w3-panel" layout:include="fragments/_full_post :: full-post" ></div>
+        <div class="w3-panel"><div id="disqus_thread" class="w3-container"></div></div>
+        <script th:inline="text">
+
+            /**
+             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+             var disqus_config = function () {
+             this.page.url = [[${post.publicSlug}]];  // Replace PAGE_URL with your page's canonical URL variable
+             this.page.identifier = [[${post.id}]]; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+             };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://ohjongsung.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
     <!-- Introduction menu -->
     <div class="w3-col l2 m2 s12" layout:include="fragments/introduction :: introduction"></div>

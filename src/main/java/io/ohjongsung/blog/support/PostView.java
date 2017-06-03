@@ -88,6 +88,10 @@ public class PostView {
         return post.getPublishAt();
     }
 
+    public String getPublicSlug() {
+        return post.getPublicSlug();
+    }
+
     public Date getCreatedAt() {
         return post.getCreatedAt();
     }
