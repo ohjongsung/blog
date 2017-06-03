@@ -1,0 +1,20 @@
+﻿User-agent: *
+Disallow: /
+
+User-agent: *
+Allow: Googlebot
+
+User-agent: *
+Allow: Naverbot
+
+User-agent: *
+Allow: Daumoa
+
+User-agent: *
+Allow: Yahoo! Slurp
+
+User-agent: *
+Allow: Msnbot
+
+User-agent: *
+Allow: Bingbot
