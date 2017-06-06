@@ -5,19 +5,24 @@ import static org.springframework.web.bind.annotation.RequestMethod.HEAD;
 
 import io.ohjongsung.blog.entity.Post;
 import io.ohjongsung.blog.support.PostCategory;
+import io.ohjongsung.blog.support.PostMovedException;
+import io.ohjongsung.blog.support.PostNotFoundException;
 import io.ohjongsung.blog.support.PostView;
 import io.ohjongsung.support.nav.PageableFactory;
 import io.ohjongsung.support.nav.PaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import io.ohjongsung.support.DateFactory;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -80,5 +85,18 @@ public class BlogController {
         model.addAttribute("posts", posts);
         model.addAttribute("paginationInfo", new PaginationInfo(postViewPage));
         return "index";
+    }
+
+    @ExceptionHandler
+    public RedirectView handle(PostMovedException moved) {
+        RedirectView redirect = new RedirectView();
+        redirect.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
+        redirect.setUrl("/" + moved.getPublicSlug());
+        return redirect;
+    }
+
+    @ExceptionHandler(PostNotFoundException.class)
+    public String handle() {
+        return "/pages/404";
     }
 }
