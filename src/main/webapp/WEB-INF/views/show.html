@@ -8,7 +8,7 @@
     <!-- default meta card -->
     <meta name="author" content="ohjongsung">
     <meta name="keyword" content="blog, development">
-    <meta name="description" content="ohjongsung's Dev Story">
+    <meta name="description" th:content="${post.renderedSummary}">
     <!-- Twitter card -->
     <meta name="twitter:card" content="summary">
     <!--<meta name="twitter:site" content="@springcentral">-->
@@ -18,13 +18,14 @@
     <meta name="twitter:image" content="https://ohjongsung.io/resources/images/header_image.jpg">
 
     <!-- http://opengraphprotocol.org/ -->
+    <meta property="fb:app_id" content="1557516384290611">
+    <meta property="og:site_name" content="ohjongsung's Dev Story">
+    <meta property="og:type" content="article">
     <meta property="og:title" th:content="${post.title}">
     <meta property="og:image" content="https://ohjongsung.io/resources/images/header_image.jpg">
     <meta property="og:description" th:content="${post.renderedSummary}">
     <meta property="og:url" th:content="'https://ohjongsung.io/'+ ${post.publicSlug}">
-    <meta property="og:type" content="article">
-    <meta property="og:article:published_time" th:content="${post.publishAt}">
-    <meta property="fb:locale" content="ko_KR">
+
     <!-- Nate card -->
     <meta name="nate:title" th:content="${post.title}">
     <meta name="nate:description" th:content="${post.renderedSummary}">
