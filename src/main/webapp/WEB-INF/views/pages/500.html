@@ -14,6 +14,18 @@
                 <h3>서비스 에러</h3>
                 <p>나중에 다시 시도해주세요.</p>
             </div>
+            <!--
+              // Hidden Exception Details  - this is not a recommendation, but here is
+              // how you hide an exception in the page using Thymeleaf
+              -->
+            <div th:utext="'&lt;!--'" th:remove="tag"></div>
+            <div th:utext="'Failed URL: ' +  ${url}" th:remove="tag">${url}</div>
+            <div th:utext="'Exception: ' + ${exception.message}" th:remove="tag">${exception.message}</div>
+            <ul th:remove="tag">
+                <li th:each="ste : ${exception.stackTrace}" th:remove="tag"><span
+                        th:utext="${ste}" th:remove="tag">${ste}</span></li>
+            </ul>
+            <div th:utext="'--&gt;'" th:remove="tag"></div>
         </div>
     </div>
 </section>

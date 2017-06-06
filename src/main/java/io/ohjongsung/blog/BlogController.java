@@ -3,13 +3,10 @@ package io.ohjongsung.blog;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.HEAD;
 
-import io.ohjongsung.blog.entity.Post;
-import io.ohjongsung.blog.support.PostCategory;
-import io.ohjongsung.blog.support.PostMovedException;
-import io.ohjongsung.blog.support.PostNotFoundException;
-import io.ohjongsung.blog.support.PostView;
-import io.ohjongsung.support.nav.PageableFactory;
-import io.ohjongsung.support.nav.PaginationInfo;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,11 +17,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import io.ohjongsung.support.DateFactory;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.List;
+import io.ohjongsung.blog.entity.Post;
+import io.ohjongsung.blog.support.PostCategory;
+import io.ohjongsung.blog.support.PostMovedException;
+import io.ohjongsung.blog.support.PostNotFoundException;
+import io.ohjongsung.blog.support.PostView;
+import io.ohjongsung.support.DateFactory;
+import io.ohjongsung.support.nav.PageableFactory;
+import io.ohjongsung.support.nav.PaginationInfo;
 
 /**
  * Created by ohjongsung on 2017-05-08.
@@ -99,4 +102,14 @@ public class BlogController {
     public String handle() {
         return "/pages/404";
     }
+
+    @ExceptionHandler(value = Exception.class)
+    public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception exception) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("exception", exception);
+        mav.addObject("url", req.getRequestURL());
+        mav.setViewName("/pages/500");
+        return mav;
+    }
+
 }
