@@ -21,7 +21,7 @@ public class SitemapController {
         this.service = service;
     }
 
-    @RequestMapping(value = "/sitemap.xml", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
+    @RequestMapping(value = "/sitemap.xml", method = RequestMethod.GET)
     public XmlUrlSet sitemap() {
         return service.createSitemap();
     }
