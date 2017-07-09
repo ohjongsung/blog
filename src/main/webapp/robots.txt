@@ -1,3 +1,5 @@
 User-agent: *
 Disallow: /resources/css/
 Disallow: /resources/js/
+
+Sitemap: https://ohjongsung.io/sitemap.xml
