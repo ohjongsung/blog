@@ -2,12 +2,11 @@ package io.ohjongsung.blog;
 
 import java.util.List;
 
-import io.ohjongsung.support.sitemap.XmlUrl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.ohjongsung.blog.entity.Post;
-import io.ohjongsung.support.DateFactory;
+import io.ohjongsung.support.sitemap.XmlUrl;
 import io.ohjongsung.support.sitemap.XmlUrlSet;
 
 /**
