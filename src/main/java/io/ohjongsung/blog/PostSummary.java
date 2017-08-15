@@ -16,7 +16,7 @@ public class PostSummary {
         StringBuilder builder = new StringBuilder();
         int count = 0;
         for (Element element : document.body().children()) {
-            builder.append(element.outerHtml());
+            builder.append(element.text());
             builder.append("\n");
             count += element.text().length();
             if (count >= maxLength) {
