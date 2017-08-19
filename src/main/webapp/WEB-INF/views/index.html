@@ -78,27 +78,28 @@
                 </div>
             </div>
         </div>
+        <!-- Pagination -->
+        <div id='pagination_control' th:if="${paginationInfo.isVisible()}" class="w3-center w3-padding-32">
+            <div class="w3-bar">
+                <a th:href="@{${@uih.path()}(page=${paginationInfo.previousPageNumber})}"
+                   class="w3-bar-item w3-button w3-hover-black" th:if="${paginationInfo.previousVisible}">«</a>
+                <th:block th:each="element : ${paginationInfo.pageElements }">
+                    <a th:href="@{${@uih.path()}(page=${element.label})}" th:text="${element.label}"
+                       th:if="${element.navigable}" class="w3-bar-item w3-button w3-hover-black"></a>
+                    <a th:text="${element.label}" th:if="${!element.navigable && element.currentPage}"
+                       class="w3-bar-item w3-black w3-button"></a>
+                    <a th:text="${element.label}" th:unless="${element.navigable || element.currentPage}"
+                       class="w3-bar-item w3-button w3-hover-black"></a>
+                </th:block>
+                <a th:href="@{${@uih.path()}(page=${paginationInfo.nextPageNumber})}"
+                   class="w3-bar-item w3-button w3-hover-black" th:if="${paginationInfo.nextVisible}">»</a>
+            </div>
+        </div>
         <!-- END BLOG ENTRIES -->
     </div>
     <!-- Introduction menu -->
     <div class="w3-col l2 m2 s12" layout:include="fragments/introduction :: introduction"></div>
-    <!-- Pagination -->
-    <div id='pagination_control' th:if="${paginationInfo.isVisible()}" class="w3-center w3-padding-32">
-        <div class="w3-bar">
-            <a th:href="@{${@uih.path()}(page=${paginationInfo.previousPageNumber})}"
-               class="w3-bar-item w3-button w3-hover-black" th:if="${paginationInfo.previousVisible}">«</a>
-            <th:block th:each="element : ${paginationInfo.pageElements }">
-                <a th:href="@{${@uih.path()}(page=${element.label})}" th:text="${element.label}"
-                   th:if="${element.navigable}" class="w3-bar-item w3-button w3-hover-black"></a>
-                <a th:text="${element.label}" th:if="${!element.navigable && element.currentPage}"
-                   class="w3-bar-item w3-black w3-button"></a>
-                <a th:text="${element.label}" th:unless="${element.navigable || element.currentPage}"
-                   class="w3-bar-item w3-button w3-hover-black"></a>
-            </th:block>
-            <a th:href="@{${@uih.path()}(page=${paginationInfo.nextPageNumber})}"
-               class="w3-bar-item w3-button w3-hover-black" th:if="${paginationInfo.nextVisible}">»</a>
-        </div>
-    </div>
+
 </section>
 </body>
 </html>

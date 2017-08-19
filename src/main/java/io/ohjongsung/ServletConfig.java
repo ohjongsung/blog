@@ -1,5 +1,6 @@
 package io.ohjongsung;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.util.UrlPathHelper;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
@@ -20,6 +22,8 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import io.ohjongsung.blog.support.PostCategoryFormatter;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by ohjongsung on 2017-05-06. spring-servlet-config.xml
@@ -93,12 +97,25 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
 
     private static class ViewRenderingHelper {
 
+        private final UrlPathHelper urlPathHelper = new UrlPathHelper();
+
+        private HttpServletRequest request;
+
+        @Autowired
+        public void setRequest(HttpServletRequest request) {
+            this.request = request;
+        }
+
         public String blogClass(String active, String current) {
             if (active.equals(current)) {
                 return "w3-leftbar w3-border-green";
             } else {
                 return "w3-leftbar";
             }
+        }
+
+        public String path() {
+            return urlPathHelper.getPathWithinApplication(request);
         }
 
     }
