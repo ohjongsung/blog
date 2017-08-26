@@ -9,7 +9,7 @@
 </head>
 <body>
 <!-- Introduction menu -->
-<div class="w3-col l2 m2 s12" layout:fragment="introduction">
+<div class="w3-col l2 m2 s12" layout:fragment="introduction" th:object="${post}">
     <div class="w3-panel">
         <p th:class="${@uih.blogClass(activeCategory ?: '', 'All Posts')}">
             <a class="w3-margin-left" href="/">All Posts</a></p>
@@ -23,6 +23,10 @@
         <div class="w3-container w3-xlarge">
             <a href="https://github.com/ohjongsung/" target="_blank"><i class="fa fa-github w3-hover-opacity w3-margin-right" aria-hidden="true"></i></a>
             <a href="mailto:ohjongsung@gmail.com"><i class="fa fa-envelope-o w3-hover-opacity" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <div class="w3-panel">
+        <div class="w3-container w3-xlarge fb-share-button" th:data-href="'https://ohjongsung.io/'+${post.publicSlug}" data-layout="button_count">
         </div>
     </div>
     <!-- Posts 추후 개발-->

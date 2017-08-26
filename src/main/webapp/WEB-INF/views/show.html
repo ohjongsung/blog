@@ -11,10 +11,10 @@
     <meta name="description" th:content="${post.renderedSummary}">
     <!-- Twitter card -->
     <meta name="twitter:card" content="summary">
-    <!--<meta name="twitter:site" content="@springcentral">-->
+    <meta name="twitter:site" content="@OhJongStar">
     <meta name="twitter:title" th:content="${post.title}">
     <meta name="twitter:description" th:content="${post.renderedSummary}">
-    <!--<meta name="twitter:creator" th:if="${post.author.hasTwitterUsername()}" th:content="'@' + ${post.author.twitterUsername}">-->
+    <meta name="twitter:creator" content="@OhJongStar">
     <meta name="twitter:image" content="https://ohjongsung.io/resources/images/header_image.jpg">
 
     <!-- http://opengraphprotocol.org/ -->
@@ -64,6 +64,13 @@
         js = d.createElement(s);
         js.id = id;
         js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=1557516384290611";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1557516384290611";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
     <div class="w3-col l10 m10 s12" th:object="${post}">
