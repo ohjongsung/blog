@@ -62,6 +62,13 @@ public class BlogController {
         return renderListOfPosts(result, model, "All Posts");
     }
 
+    @RequestMapping(value = "/pages/{page}", method = { GET, HEAD })
+    public String listPublishedPostsWithPage(Model model, @PathVariable int page) {
+        Pageable pageRequest = PageableFactory.forLists(page);
+        Page<Post> result = service.getPublishedPosts(pageRequest);
+        return renderListOfPosts(result, model, "All Posts");
+    }
+
     @RequestMapping(value = "/category/{category}", method = { GET, HEAD })
     public String listPublishedPostsForCategory(@PathVariable("category") PostCategory category, Model model,
                                                 @RequestParam(defaultValue = "1", value = "page") int page) {
