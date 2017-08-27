@@ -5,6 +5,8 @@
       lang="ko" data-code-prettify>
 <head>
     <title th:inline="text">[[${post.title}]]</title>
+    <link rel="alternate" hreflang="x-default" th:href="@{'https://ohjongsung.io'+${post.publicSlug}}"/>
+    <link rel="alternate" hreflang="ko-kr" th:href="@{'https://ohjongsung.io'+${post.publicSlug}}"/>
     <!-- default meta card -->
     <meta name="author" content="ohjongsung">
     <meta name="keyword" content="blog, development">
