@@ -59,6 +59,15 @@
 </head>
 <body>
 <section layout:fragment="content">
+    <div class="w3-col l10 m10 s12" th:object="${post}">
+        <div id="content" class="w3-panel" layout:include="fragments/_full_post :: full-post"></div>
+        <div class="w3-panel">
+            <div class="fb-comments w3-container" th:data-href="'https://ohjongsung.io/'+${post.publicSlug}"
+                 data-width="760" data-numposts="10"></div>
+        </div>
+    </div>
+    <!-- Introduction menu -->
+    <div class="w3-col l2 m2 s12" layout:include="fragments/introduction :: introduction"></div>
     <div id="fb-root"></div>
     <script>(function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -75,15 +84,7 @@
         js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1557516384290611";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
-    <div class="w3-col l10 m10 s12" th:object="${post}">
-        <div id="content" class="w3-panel" layout:include="fragments/_full_post :: full-post"></div>
-        <div class="w3-panel">
-            <div class="fb-comments w3-container" th:data-href="'https://ohjongsung.io/'+${post.publicSlug}"
-                 data-width="760" data-numposts="10"></div>
-        </div>
-    </div>
-    <!-- Introduction menu -->
-    <div class="w3-col l2 m2 s12" layout:include="fragments/introduction :: introduction"></div>
 </section>
 </body>
+
 </html>
