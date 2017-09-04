@@ -6,10 +6,10 @@ apply plugin: 'jacoco'
 archivesBaseName = 'blog'
 group 'io.ohjongsung'
 version '1.0-SNAPSHOT'
-
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 ext {
     encoding = 'UTF-8'
-    javaVersion = '1.8'
     springRepo = 'http://repo.spring.io/libs-release'
     versions = [
             spring    : '4.3.7.RELEASE',
@@ -35,8 +35,7 @@ ext {
             thymeleaf : '3.0.5.RELEASE'
     ]
 }
-sourceCompatibility = JavaVersion
-targetCompatibility = JavaVersion
+
 [compileJava, compileTestJava]*.options*.encoding = encoding
 
 repositories {
