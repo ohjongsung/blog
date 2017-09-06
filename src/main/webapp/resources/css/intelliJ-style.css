@@ -12,7 +12,7 @@
 
 code {
     margin: 0 2px;
-    color: #6897BB;
+    color: #a9b7c6;
     padding: 3px 5px;
     border-radius: 2px;
     font-family: font-mono;
@@ -90,12 +90,12 @@ li.L9 {
 
     /* markup attribute name */
     .atn {
-        color: #6A8759;
+        color: #a9b7c6;
     }
 
     /* markup attribute value */
     .atv {
-        color: #8abeb7;
+        color: #6A8759;
     }
 
     /* declaration */
