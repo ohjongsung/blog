@@ -14,7 +14,7 @@ public class PrettifyVerbatimSerializer implements VerbatimSerializer {
 
     @Override
     public void serialize(final VerbatimNode node, final Printer printer) {
-        printer.println().print("<div class=\"w3-panel w3-border w3-light-grey\"><pre");
+        printer.println().print("<div><pre");
         String className = "prettyprint";
         if (!StringUtils.isEmpty(node.getType())) {
             className = className.concat(" " + node.getType());

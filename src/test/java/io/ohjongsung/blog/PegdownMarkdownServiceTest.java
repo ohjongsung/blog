@@ -27,7 +27,7 @@ public class PegdownMarkdownServiceTest {
         String markdown = "```java\n" +
                 "public static void main(String[] args) {}\n" +
                 "```";
-        Assert.assertEquals("<div class=\"w3-panel w3-border w3-light-grey\"><pre class=\"prettyprint java\"><code>public static void main(String[] args) {}\n" +
+        Assert.assertEquals("<div><pre class=\"prettyprint java\"><code>public static void main(String[] args) {}\n" +
                 "</code></pre></div>", service.renderToHtml(markdown));
     }
 

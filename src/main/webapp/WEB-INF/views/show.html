@@ -56,8 +56,9 @@
     }
 
     </script>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/intelliJ-style.css}"/>
 </head>
-<body>
+<body onload="prettyPrint()">
 <section layout:fragment="content">
     <div class="w3-col l10 m10 s12" th:object="${post}">
         <div id="content" class="w3-panel" layout:include="fragments/_full_post :: full-post"></div>
@@ -68,6 +69,7 @@
     </div>
     <!-- Introduction menu -->
     <div class="w3-col l2 m2 s12" layout:include="fragments/introduction :: introduction"></div>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/prettify.js"></script>
     <div id="fb-root"></div>
     <script>(function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
