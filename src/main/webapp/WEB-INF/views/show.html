@@ -69,6 +69,12 @@
     </div>
     <!-- Introduction menu -->
     <div class="w3-col l2 m2 s12" layout:include="fragments/introduction :: introduction"></div>
+    <div class="w3-col l2 m2 s12">
+        <div class="w3-panel">
+            <div class="w3-container w3-xlarge fb-share-button" th:data-href="'https://ohjongsung.io/'+${post.publicSlug}" data-layout="button_count">
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/prettify.js"></script>
     <div id="fb-root"></div>
     <script>(function (d, s, id) {
