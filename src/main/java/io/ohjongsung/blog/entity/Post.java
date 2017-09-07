@@ -8,6 +8,8 @@ import org.hibernate.annotations.Type;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -202,7 +204,13 @@ public class Post {
 
     @JsonIgnore
     public String getAdminSlug() {
-        return String.format("%s-%s", getId(), getSlug());
+        String slug;
+        try {
+            slug = URLEncoder.encode(getSlug(), "UTF-8");
+        }catch (UnsupportedEncodingException e) {
+            throw new AssertionError("UTF-8 is unknown");
+        }
+        return String.format("%s-%s", getId(), slug);
     }
 
     private String generatePublicSlug() {
