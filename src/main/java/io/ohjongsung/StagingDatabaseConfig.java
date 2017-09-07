@@ -16,6 +16,6 @@ public class StagingDatabaseConfig {
     @Bean
     public DataSource dataSource() {
         JndiDataSourceLookup lookup = new JndiDataSourceLookup();
-        return lookup.getDataSource("jdbc/BlogDB");
+        return lookup.getDataSource("jdbc/BlogDB_Staging");
     }
 }
