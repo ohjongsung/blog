@@ -3,6 +3,15 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       lang="ko">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100321409-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-100321409-2');
+    </script>
     <title layout:title-pattern="$CONTENT_TITLE :: $DECORATOR_TITLE">Ohjongsung's Dev Story</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +36,6 @@
     <link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com"/>
     <link rel="dns-prefetch" href="https://cdn.rawgit.com"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
 </head>
 <body>
 <div class="w3-content" style="max-width:2000px">
@@ -52,14 +60,4 @@
     <!-- Footer -->
     <footer th:replace="fragments/footer :: footer"></footer>
 </body>
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-100321409-1', 'auto');
-    ga('send', 'pageview');
-</script>
 </html>
