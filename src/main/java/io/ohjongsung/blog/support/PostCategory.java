@@ -8,10 +8,7 @@ public enum PostCategory {
     HOW_TO_GUIDES("How-to Guides", "How-to Guides"),
     TUTORIALS("Tutorials", "Tutorials"),
     EXPLANATION("Explanation", "Explanation"),
-    REFERENCE("Reference", "Reference"),
-    INTRODUCTION("Introduction", "introduction"),
-    PRACTICE("Practice", "practice"),
-    TIP("Tip", "tip");
+    REFERENCE("Reference", "Reference");
 
     private String displayName;
     private String urlSlug;
