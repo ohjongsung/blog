@@ -15,17 +15,17 @@ public class PostCategoryFormatterTest {
 
     @Test
     public void itConvertsUrlSlugStringsToPostCategories() throws ParseException {
-        assertThat(formatter.parse(PostCategory.INTRODUCTION.getUrlSlug(), null), equalTo(PostCategory.INTRODUCTION));
+        assertThat(formatter.parse(PostCategory.HOW_TO_GUIDES.getUrlSlug(), null), equalTo(PostCategory.HOW_TO_GUIDES));
     }
 
     @Test
     public void itConvertsEnumNameStringsToPostCategories() throws ParseException {
-        assertThat(formatter.parse(PostCategory.INTRODUCTION.name(), null), equalTo(PostCategory.INTRODUCTION));
+        assertThat(formatter.parse(PostCategory.HOW_TO_GUIDES.name(), null), equalTo(PostCategory.HOW_TO_GUIDES));
     }
 
     @Test
     public void itPrintsAStringThatCanBeParsed() throws ParseException {
-        assertThat(formatter.parse(formatter.print(PostCategory.INTRODUCTION, null), null),
-                equalTo(PostCategory.INTRODUCTION));
+        assertThat(formatter.parse(formatter.print(PostCategory.HOW_TO_GUIDES, null), null),
+                equalTo(PostCategory.HOW_TO_GUIDES));
     }
 }
