@@ -57,8 +57,12 @@
 
     </script>
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/intelliJ-style.css}"/>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.js?lang=sql"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/lang-sql.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/lang-wiki.js"></script>
+
 </head>
-<body onload="prettyPrint()">
+<body onload="PR.prettyPrint()">
 <section layout:fragment="content">
     <div class="w3-col l10 m10 s12" th:object="${post}">
         <div id="content" class="w3-panel" layout:include="fragments/_full_post :: full-post"></div>
@@ -75,7 +79,6 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/prettify.js"></script>
     <div id="fb-root"></div>
     <script>(function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
