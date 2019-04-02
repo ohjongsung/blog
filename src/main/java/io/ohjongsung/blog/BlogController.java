@@ -3,6 +3,8 @@ package io.ohjongsung.blog;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.HEAD;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -112,9 +114,16 @@ public class BlogController {
 
     @ExceptionHandler(value = Exception.class)
     public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception exception) {
+        String url;
+        try {
+            url = URLEncoder.encode(req.getRequestURL().toString(), "UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            url = req.getRequestURL().toString();
+        }
+
         ModelAndView mav = new ModelAndView();
         mav.addObject("exception", exception);
-        mav.addObject("url", req.getRequestURL());
+        mav.addObject("url", url);
         mav.setViewName("/pages/500");
         return mav;
     }
