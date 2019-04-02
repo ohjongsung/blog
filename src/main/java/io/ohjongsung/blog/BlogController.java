@@ -103,7 +103,11 @@ public class BlogController {
     public RedirectView handle(PostMovedException moved) {
         RedirectView redirect = new RedirectView();
         redirect.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
-        redirect.setUrl("/" + moved.getPublicSlug());
+        try {
+            redirect.setUrl(URLEncoder.encode("/" + moved.getPublicSlug(), "UTF-8"));
+        } catch (UnsupportedEncodingException ex) {
+            redirect.setUrl("/" + moved.getPublicSlug());
+        }
         return redirect;
     }
 
@@ -114,16 +118,9 @@ public class BlogController {
 
     @ExceptionHandler(value = Exception.class)
     public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception exception) {
-        String url;
-        try {
-            url = URLEncoder.encode(req.getRequestURL().toString(), "UTF-8");
-        } catch (UnsupportedEncodingException ex) {
-            url = req.getRequestURL().toString();
-        }
-
         ModelAndView mav = new ModelAndView();
         mav.addObject("exception", exception);
-        mav.addObject("url", url);
+        mav.addObject("url", req.getRequestURL());
         mav.setViewName("/pages/500");
         return mav;
     }
