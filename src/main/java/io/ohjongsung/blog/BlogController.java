@@ -6,6 +6,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.HEAD;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -103,11 +104,7 @@ public class BlogController {
     public RedirectView handle(PostMovedException moved) {
         RedirectView redirect = new RedirectView();
         redirect.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
-        try {
-            redirect.setUrl(URLEncoder.encode("/" + moved.getPublicSlug(), "UTF-8"));
-        } catch (UnsupportedEncodingException ex) {
-            redirect.setUrl("/" + moved.getPublicSlug());
-        }
+        redirect.setUrl("/" + getEncodedUrl(moved.getPublicSlug()));
         return redirect;
     }
 
@@ -123,6 +120,28 @@ public class BlogController {
         mav.addObject("url", req.getRequestURL());
         mav.setViewName("/pages/500");
         return mav;
+    }
+
+    public String getEncodedUrl(String url) {
+        StringBuilder sb = new StringBuilder();
+        Scanner scanner = new Scanner(url).useDelimiter("/");
+
+        // encode each part of path
+        while (scanner.hasNext()) {
+            String part = scanner.next();
+            try {
+                sb.append(URLEncoder.encode(part, "UTF-8"));
+            } catch (UnsupportedEncodingException ex) {
+                sb.append(part);
+            }
+            sb.append('/');
+        }
+
+        if (!url.endsWith("/")) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+
+        return sb.toString();
     }
 
 }
