@@ -5,7 +5,7 @@ package io.ohjongsung.blog.support;
  */
 public enum PostCategory {
 
-    HOW_TO_GUIDES("How-to Guides", "How-to Guides"),
+    HOW_TO_GUIDES("How-to Guides", "How-to-Guides"),
     TUTORIALS("Tutorials", "Tutorials"),
     EXPLANATION("Explanation", "Explanation"),
     REFERENCE("Reference", "Reference");
