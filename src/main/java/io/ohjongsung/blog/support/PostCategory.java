@@ -5,10 +5,10 @@ package io.ohjongsung.blog.support;
  */
 public enum PostCategory {
 
-    HOW_TO_GUIDES("How-to Guides", "How-to-Guides"),
-    TUTORIALS("Tutorials", "Tutorials"),
-    EXPLANATION("Explanation", "Explanation"),
-    REFERENCE("Reference", "Reference");
+    HOW_TO_GUIDES("How-to Guides", "how-to-guides"),
+    TUTORIALS("Tutorials", "tutorials"),
+    EXPLANATION("Explanation", "explanation"),
+    REFERENCE("Reference", "reference");
 
     private String displayName;
     private String urlSlug;
